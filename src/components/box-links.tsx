@@ -57,7 +57,7 @@ export function BoxLinks({ boxId, isTiny }: { boxId: string, isTiny: boolean }) 
   }
 
   return (
-    <div className="flex flex-col gap-[15px] justify-center items-center">
+    <div className="flex flex-col w-full gap-[15px] justify-center items-center">
       {
         data?.map((link: Link) => (
           <a
