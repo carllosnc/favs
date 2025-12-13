@@ -23,6 +23,14 @@ export function ProfileBoxes({ namespace }: { namespace: string }) {
     )
   }
 
+  if (boxes?.length === 0) {
+    return (
+      <div className="flex-1  w-full flex flex-col items-center gap-2.5">
+        <div className="w-full text-sm text-center p-5"> No boxes yet </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex-1 w-full flex flex-col items-center gap-2.5">
       { boxes?.length === 0 && <div className="w-full text-sm text-center p-5"> No boxes yet </div> }
