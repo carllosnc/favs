@@ -8,7 +8,7 @@ export default async function PublicBox({ params }: any) {
   const { namespace } = await params
 
   return (
-    <div className="flex flex-col justify-between flex-1 pt-10 gap-[30px] items-center w-full">
+    <div className="flex flex-col justify-between min-h-screen pt-10 gap-[30px] items-center w-full">
       <Link href="/">
         <Image
           className="w-fuill max-w-[120px] h-auto"
@@ -20,7 +20,9 @@ export default async function PublicBox({ params }: any) {
       </Link>
 
       <ProfileHeader namespace={namespace} />
-      <ProfileBoxes namespace={namespace} />
+      <div className="w-full flex-1">
+        <ProfileBoxes namespace={namespace} />
+      </div>
       <DashboardFooter />
     </div>
   )
