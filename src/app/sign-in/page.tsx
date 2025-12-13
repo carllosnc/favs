@@ -24,7 +24,7 @@ export default function SignInPage(){
               Sign with Google
             </Button>
           </div>
-          <Link href="/" className="text-center text-blue-600 text-sm"> Back to home → </Link>
+          <Link href="/" className="text-center text-blue-600 text-sm"> ← Back to home </Link>
         </div>
       </div>
   )
