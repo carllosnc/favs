@@ -19,6 +19,7 @@ import { NewBox } from "@/types/db-types"
 import { extractErrorDetails } from "@/lib/error"
 import { getNamespace, getSlug } from "@/lib/utils"
 import { Session } from "@/types/session"
+import { LuBox } from "react-icons/lu"
 
 export function DashboardNewBox({ session }: { session: Session }){
   const [open, setOpen] = useState(false)
@@ -56,7 +57,10 @@ export function DashboardNewBox({ session }: { session: Session }){
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button> New box </Button>
+        <Button>
+          <LuBox size={22} className="text-white" />
+          New box
+        </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[400px]">
         <DialogHeader>
