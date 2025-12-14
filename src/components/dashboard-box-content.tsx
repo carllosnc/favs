@@ -35,7 +35,9 @@ export function DashboardBoxContent({boxId, session}: Props) {
     <div className="flex flex-col gap-5">
       <header className="flex items-center gap-[25px]">
         <Link href={`/dashboard`} >
-          <Button className="cursor-pointer" variant="outline" size="icon"> <FaChevronLeft /> </Button>
+          <Button className="cursor-pointer" variant="outline" size="icon">
+            <FaChevronLeft />
+          </Button>
         </Link>
         <div className="flex flex-col gap-0">
           <h1 className="w-full text-lg"> {box.title} </h1>
