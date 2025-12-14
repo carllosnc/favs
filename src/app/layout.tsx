@@ -3,6 +3,12 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/components/react-query-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { Session } from "@/types/session"
+import { auth } from "@/lib/auth"
+import { headers } from "next/headers"
+import { Button } from "@/components/ui/button"
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,15 +26,20 @@ const interSans = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "FAVS",
-  description: "Your favourite links",
+  title: "FAVS - Your favourite links",
+  description: "The better place to your favorite links",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const session: Session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
   return (
     <html lang="en">
       <body
@@ -39,6 +50,14 @@ export default function RootLayout({
             {children}
           </ReactQueryProvider>
         </div>
+
+          { session &&
+            <Link href={`/dashboard/`} className="fixed bottom-5 right-5 leading-5">
+              <Button size="icon-lg" className="cursor-pointer">
+                <MdOutlineSpaceDashboard />
+              </Button>
+            </Link>
+          }
 
         <Toaster />
       </body>
