@@ -76,7 +76,7 @@ export function BoxLinks({ boxId, isTiny }: { boxId: string, isTiny: boolean }) 
                     alt="favicon"
                   />
                 }
-                <h3 className="text-sm wrap-anywhere"> {link.title} </h3>
+                <h3 className="text-sm wrap-anywhere md:truncate"> {link.title} </h3>
               </div>
 
               { link.description && !isTiny &&

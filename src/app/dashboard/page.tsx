@@ -8,6 +8,7 @@ import { headers } from "next/headers"
 import { Session } from "@/types/session"
 import Link from "next/link"
 import { getNamespace } from "@/lib/utils"
+import { LuUser } from "react-icons/lu";
 
 export default async function Dashboard(){
   const session: Session = await auth.api.getSession({
@@ -22,7 +23,7 @@ export default async function Dashboard(){
         <div className="flex items-center justify-between gap-2.5 shadow-sm rounded-md bg-white p-2.5">
           <Link className="inline-flex" href={`/profile/${getNamespace(session!.user.email)}`}>
             <Button variant="outline" className="cursor-pointer">
-              Public profile
+              <LuUser /> Public profile
             </Button>
           </Link>
           <DashboardNewBox session={session} />
