@@ -14,7 +14,7 @@ export default async function Home() {
     <main className="min-h-screen flex flex-col justify-between">
       <DashboardHeader session={session} />
 
-      <div className="w-full px-6 flex flex-col gap-[40px] items-center justify-center">
+      <div className="w-full px-6 flex flex-col gap-10 items-center justify-center">
         <Image
           className="w-fuill max-w-[120px] h-auto"
           src="/images/logo.svg"
@@ -24,7 +24,7 @@ export default async function Home() {
         />
 
         <h1 className="md:text-[30px] md:leading-[35px] text-center leading-[50px] font-medium text-[50px] w-full max-w-[700px]">
-          The better way to manage your favorite links
+          The better place to your favorite links
         </h1>
 
         <p className="text-center text-neutral-500 w-full text-[20px] md:text-[18px] md:text-md max-w-[600px]">
