@@ -2,7 +2,7 @@
 
 import { useBoxes } from "@/data/db-hooks/box-hooks"
 import { Session } from "@/types/session"
-import { LuBox } from "react-icons/lu"
+import { LuBox, LuLock } from "react-icons/lu"
 import { useEffect, useState } from "react"
 import { Box } from "@/types/db-types"
 import { formatDate } from "@/lib/utils"
@@ -19,7 +19,6 @@ export function DashboardListBoxes({ session }: { session: Session }) {
   useEffect(() => {
     setUrl(window.location)
   }, [])
-
 
   function filterBox(box: Box) {
     return !filter || box.title.toLowerCase().includes(filter.toLowerCase())
@@ -73,7 +72,11 @@ export function DashboardListBoxes({ session }: { session: Session }) {
               <div className="flex gap-5 items-center w-full">
                 <div className="w-full flex flex-col gap-2.5">
                   <div className="flex items-center gap-5">
-                    <LuBox size={22} className="text-neutral-400" />
+                    {
+                      box.is_public
+                        ? <LuBox size={22} className="text-neutral-400" />
+                        : <LuLock size={22} className="text-red-400" />
+                    }
                     <div className="flex flex-col gap-[5px]">
                       <h3 className="text-neutral-800 font-bold text-[16px]">{box.title}</h3>
                       <p className="text-sm text-neutral-800"> { formatDate(box.created_at!) } </p>
