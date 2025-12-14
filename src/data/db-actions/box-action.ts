@@ -1,7 +1,7 @@
 import { db } from '@/database'
 import { boxes } from '@/data/db-schemas/box-schema'
 import type { Box, NewBox, UpdateBox } from '@/types/db-types'
-import { eq, asc, desc, and } from 'drizzle-orm'
+import { eq, asc, desc, and, sql } from 'drizzle-orm'
 
 export async function createBox(box: NewBox) {
   return await db.insert(boxes).values(box).returning()
@@ -12,22 +12,22 @@ export async function getBoxes(userId: string) {
     .select()
     .from(boxes)
     .where(eq(boxes.user_id, userId))
-    .orderBy(asc(boxes.created_at))
+    .orderBy(desc(boxes.created_at))
 }
 
 export async function getBoxesByNamespace(namespace: string) {
   return await db
     .select()
     .from(boxes)
-    .where(eq(boxes.author_namespace, namespace))
-    .orderBy(asc(boxes.created_at))
+    .where(sql`${boxes.author_namespace} = ${namespace} AND ${boxes.is_public} = true`)
+    .orderBy(asc(boxes.title))
 }
 
 export async function getBoxBySlug(namespace: string, slug: string) {
   return await db
     .select()
     .from(boxes)
-    .where(and(eq(boxes.author_namespace, namespace), eq(boxes.slug, slug)))
+    .where(sql`${boxes.author_namespace} = ${namespace} AND ${boxes.slug} = ${slug} AND ${boxes.is_public} = true`)
 }
 
 export async function getBoxById(id: string, userId: string) {
