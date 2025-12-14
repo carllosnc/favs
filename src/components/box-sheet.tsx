@@ -11,6 +11,7 @@ import { Button } from "./ui/button"
 import { useBoxesByNamespace } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import Link from "next/link"
+import { MdOutlineMenu } from "react-icons/md"
 
 export function BoxSheet({ namespace }: { namespace: string }) {
   const { data, isLoading } = useBoxesByNamespace(namespace)
@@ -18,7 +19,9 @@ export function BoxSheet({ namespace }: { namespace: string }) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="sm"> Boxes </Button>
+        <Button variant="outline" size="sm">
+          <MdOutlineMenu /> Boxes by {namespace}
+        </Button>
       </SheetTrigger>
       <SheetContent className="max-w-[250px]" side="left">
         <SheetHeader>
