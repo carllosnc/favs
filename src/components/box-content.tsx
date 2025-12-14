@@ -21,6 +21,15 @@ export function BoxContent({ namespace, slug }: Props) {
     return ( <div /> )
   }
 
+  if (!box) {
+    return (
+      <div className="flex pt-5 w-full flex-col items-center flex-1 gap-5">
+        <span>Box not found</span>
+        <BoxSheet namespace={namespace} />
+      </div>
+    )
+  }
+
   return (
     <section className="flex w-full flex-col items-center flex-1 gap-5">
       <div className="text-sm text-center">
