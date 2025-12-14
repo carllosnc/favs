@@ -22,11 +22,9 @@ function LinkImage({ link }: { link: Link }) {
 
   return (
     <img
-      className="w-full h-auto"
+      className="w-full"
       src={link.image!}
       alt={link.title!}
-      width={300}
-      height={300}
     />
   )
 }
@@ -61,7 +59,7 @@ export function BoxLinks({ boxId, isTiny }: { boxId: string, isTiny: boolean }) 
       {
         data?.map((link: Link) => (
           <a
-            className="bg-white w-full max-w-[600px] p-[15px] flex flex-col gap-5 shadow-sm rounded-md"
+            className="bg-white w-full max-w-[600px] p-[15px] flex flex-col gap-5 shadow-sm rounded-md border border-white hover:border-blue-500 transition-all"
             target="_blank"
             rel="noreferrer"
             key={link.id}
