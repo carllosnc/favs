@@ -12,6 +12,7 @@ import { Session } from "@/types/session"
 import { useBoxes } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import Link from "next/link"
+import { MdOutlineMenu } from "react-icons/md"
 
 export function DashboardBoxSheet({ session }: { session: Session }) {
   const { data, isLoading } = useBoxes(session!.user.id!)
@@ -19,7 +20,9 @@ export function DashboardBoxSheet({ session }: { session: Session }) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline"> Boxes </Button>
+        <Button variant="outline">
+           <MdOutlineMenu /> Boxes
+        </Button>
       </SheetTrigger>
       <SheetContent className="max-w-[250px]" side="left">
         <SheetHeader>
