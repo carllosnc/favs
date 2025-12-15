@@ -14,15 +14,12 @@ export function ProfileBoxes({ namespace }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-2.5 max-w-[400px] w-full" >
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
-        <Skeleton className="h-[50px] w-full rounded-[5px]" />
+      <div className="flex flex-col gap-2.5 max-w-[500px] w-full m-auto" >
+        {
+          Array(4).fill(0).map((_, i) => (
+            <Skeleton key={i} className="h-[50px] w-full rounded-md bg-white" />)
+          )
+        }
       </div>
     )
   }
