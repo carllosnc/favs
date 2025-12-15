@@ -24,20 +24,11 @@ export function ListBoxes({ session }: Props) {
   if (isLoading) {
     return (
       <div className="flex flex-col gap-2.5 w-full" >
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
-        <Skeleton className="h-20 w-full rounded-[5px]" />
+        {
+          Array(4).fill(0).map((_, i) => (
+            <Skeleton key={i} className="h-20 w-full rounded-md bg-white" />)
+          )
+        }
       </div>
     )
   }
