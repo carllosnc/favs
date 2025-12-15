@@ -9,7 +9,11 @@ import { IoFilter } from "react-icons/io5"
 import { Skeleton } from "../ui/skeleton"
 import { BoxCard } from "./box-card"
 
-export function ListBoxes({ session }: { session: Session }) {
+type Props = {
+  session: Session
+}
+
+export function ListBoxes({ session }: Props) {
   const { data: boxes, isLoading } = useBoxes(session?.user.id!)
   const [filter, setFilter] = useState<string>()
 

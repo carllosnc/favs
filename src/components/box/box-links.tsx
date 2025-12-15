@@ -5,7 +5,11 @@ import { Link } from "@/types/db-types"
 import { useEffect, useState } from "react"
 import { BsBox } from "react-icons/bs";
 
-function LinkImage({ link }: { link: Link }) {
+type Props = {
+  link: Link
+}
+
+function LinkImage({ link }: Props) {
   const [validImage, setValidImage] = useState(true)
 
   useEffect(() => {

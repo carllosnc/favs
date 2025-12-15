@@ -21,7 +21,11 @@ import { getNamespace, getSlug } from "@/lib/utils"
 import { Session } from "@/types/session"
 import { LuBox } from "react-icons/lu"
 
-export function CreateBox({ session }: { session: Session }){
+type Props = {
+  session: Session
+}
+
+export function CreateBox({ session }: Props){
   const [open, setOpen] = useState(false)
   const { mutate, isPending, isError, error, isSuccess } = useCreateBox()
 

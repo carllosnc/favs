@@ -21,7 +21,12 @@ import { Spinner } from "../ui/spinner";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export function Deletebox({ box, session }: { box: Box, session: Session }) {
+type Props = {
+  box: Box
+  session: Session
+}
+
+export function Deletebox({ box, session }: Props) {
   const { mutate, isPending, isSuccess } = useDeleteBox({ userId: session!.user.id! })
   const router = useRouter()
 

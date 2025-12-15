@@ -5,7 +5,6 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export default async function Home() {
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });

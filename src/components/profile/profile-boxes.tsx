@@ -5,7 +5,11 @@ import { Box } from "@/types/db-types"
 import { LuBox } from "react-icons/lu"
 import { Skeleton } from "../ui/skeleton"
 
-export function ProfileBoxes({ namespace }: { namespace: string }) {
+type Props = {
+  namespace: string
+}
+
+export function ProfileBoxes({ namespace }: Props) {
   const { data: boxes, isLoading } = useBoxesByNamespace(namespace)
 
   if (isLoading) {

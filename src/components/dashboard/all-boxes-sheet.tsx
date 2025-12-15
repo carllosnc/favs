@@ -14,7 +14,11 @@ import { Box } from "@/types/db-types"
 import Link from "next/link"
 import { MdOutlineMenu } from "react-icons/md"
 
-export function AllBoxesSheet({ session }: { session: Session }) {
+type Props = {
+  session: Session
+}
+
+export function AllBoxesSheet({ session }: Props) {
   const { data, isLoading } = useBoxes(session!.user.id!)
 
   return (

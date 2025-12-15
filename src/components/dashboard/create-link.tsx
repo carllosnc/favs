@@ -16,7 +16,11 @@ import { Button } from '@/components/ui/button'
 import { newLinkSchema } from '@/data/zod-schemas/new-link-schema'
 import { useCreateLink } from '@/data/db-hooks/link-hooks'
 
-export function CreateLink({ box }: { box: Box }) {
+type Props = {
+  box: Box
+}
+
+export function CreateLink({ box }: Props) {
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const { mutate } = useCreateLink(box.id)

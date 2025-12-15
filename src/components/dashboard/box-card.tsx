@@ -5,7 +5,11 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { BoxCardActions } from "./box-card-actions"
 
-export function BoxCard({ box }: { box: Box }) {
+type Props = {
+  box: Box
+}
+
+export function BoxCard({ box }: Props) {
   const [url, setUrl] = useState<Location>()
 
   useEffect(() => {

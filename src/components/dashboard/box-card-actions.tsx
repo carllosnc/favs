@@ -8,7 +8,11 @@ import { Button } from "../ui/button"
 import { Box } from "@/types/db-types"
 import { MdOutlineMoreVert } from "react-icons/md";
 
-export function BoxCardActions({ box }: { box: Box }) {
+type Props = {
+  box: Box
+}
+
+export function BoxCardActions({ box }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

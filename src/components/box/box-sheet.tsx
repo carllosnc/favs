@@ -13,7 +13,11 @@ import { Box } from "@/types/db-types"
 import Link from "next/link"
 import { MdOutlineMenu } from "react-icons/md"
 
-export function BoxSheet({ namespace }: { namespace: string }) {
+type Props = {
+  namespace: string
+}
+
+export function BoxSheet({ namespace }: Props) {
   const { data, isLoading } = useBoxesByNamespace(namespace)
 
   return (

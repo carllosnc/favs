@@ -3,7 +3,11 @@
 import { useUser } from "@/data/db-hooks/user-hooks"
 import { User } from "better-auth"
 
-export function ProfileHeader({ namespace }: { namespace: string }) {
+type Props = {
+  namespace: string
+}
+
+export function ProfileHeader({ namespace }: Props) {
   const { data } = useUser(namespace)
   const user = data?.[0] as User
 

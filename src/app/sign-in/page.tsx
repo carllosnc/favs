@@ -18,7 +18,9 @@ export default function SignInPage(){
         />
         <div className="flex flex-col gap-[30px]">
           <div className="flex flex-col gap-2.5">
-            <span className="text-neutral-500 text-[16px]"> Welcome, do login to continue</span>
+            <span className="text-neutral-500 text-[16px]">
+              Welcome, do login to continue
+            </span>
             <Button variant="outline" onClick={() => { googleSignIn() }}>
               <FcGoogle />
               Sign with Google
