@@ -4,7 +4,7 @@ import Link from "next/link"
 import { SessionButton } from "@/components/session-button";
 import type { Session } from "@/types/session";
 
-export function DashboardHeader({ session }: { session: Session }) {
+export function Header({ session }: { session: Session }) {
   return (
     <header className="py-2.5 w-full">
       <div className="flex justify-between items-center w-full m-auto">

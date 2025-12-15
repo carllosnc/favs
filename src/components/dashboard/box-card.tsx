@@ -3,9 +3,9 @@ import { Box } from "@/types/db-types"
 import { formatDate } from "@/lib/utils"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { DashboardBoxCardMore } from "./dashboard-box-card-more"
+import { BoxCardActions } from "./box-card-actions"
 
-export function DashboardBoxCard({ box }: { box: Box }) {
+export function BoxCard({ box }: { box: Box }) {
   const [url, setUrl] = useState<Location>()
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export function DashboardBoxCard({ box }: { box: Box }) {
               </div>
             </div>
 
-            <DashboardBoxCardMore box={box} />
+            <BoxCardActions box={box} />
 
           </div>
           <hr className="w-full" />

@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
 import { Label } from "@radix-ui/react-label"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from "react"
@@ -26,7 +26,7 @@ type Props = {
   box: Box
 }
 
-export function DashboardEditBox({ session, box }: Props){
+export function EditBox({ session, box }: Props){
   const [open, setOpen] = useState(false)
 
   const { mutate, isPending, isError, error, isSuccess } = useUpdateBox(

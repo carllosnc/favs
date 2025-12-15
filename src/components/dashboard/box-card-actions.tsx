@@ -4,11 +4,11 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { Box } from "@/types/db-types"
 import { MdOutlineMoreVert } from "react-icons/md";
 
-export function DashboardBoxCardMore({ box }: { box: Box }) {
+export function BoxCardActions({ box }: { box: Box }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -19,6 +19,10 @@ export function DashboardBoxCardMore({ box }: { box: Box }) {
       <DropdownMenuContent className="w-56" align="start">
         <DropdownMenuCheckboxItem className="px-2.5">
           Rename box
+        </DropdownMenuCheckboxItem>
+
+        <DropdownMenuCheckboxItem className="px-2.5">
+          Go to public page
         </DropdownMenuCheckboxItem>
 
         <DropdownMenuCheckboxItem className="px-2.5 text-red-500">

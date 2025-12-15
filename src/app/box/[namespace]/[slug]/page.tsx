@@ -1,7 +1,7 @@
-import { BoxContent } from "@/components/box-content"
+import { BoxContent } from "@/components/box/box-content"
 import Link from "next/link"
 import Image from "next/image"
-import { DashboardFooter } from "@/components/dashboard-footer"
+import { Footer } from "@/components/footer"
 
 export default async function BoxPage( { params }: any ) {
   const { namespace, slug } = await params
@@ -20,7 +20,7 @@ export default async function BoxPage( { params }: any ) {
 
       <BoxContent namespace={namespace} slug={slug} />
 
-      <DashboardFooter />
+      <Footer />
     </div>
   )
 }

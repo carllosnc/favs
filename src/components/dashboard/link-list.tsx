@@ -1,12 +1,12 @@
 import { useLinks } from "@/data/db-hooks/link-hooks"
 import { Box, Link } from "@/types/db-types"
-import { DashboardBoxLinkCard } from "./dashboard-box-link-card"
+import { LinkCard } from "./link-card"
 
 type Props = {
   box: Box
 }
 
-export function DashBoardBoxLinkList({ box }: Props) {
+export function LinkList({ box }: Props) {
   const { data, isLoading } = useLinks(box.id)
 
   if (isLoading) {
@@ -27,7 +27,7 @@ export function DashBoardBoxLinkList({ box }: Props) {
 
   return (
     <div className="flex flex-col gap-2.5">
-      { data?.map((link: Link) => (<DashboardBoxLinkCard key={link.id} link={link} />)) }
+      { data?.map((link: Link) => (<LinkCard key={link.id} link={link} />)) }
     </div>
   )
 }

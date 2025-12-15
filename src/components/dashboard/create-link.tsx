@@ -10,13 +10,13 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Link as LinkIcon } from 'lucide-react'
+import { LinkIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { newLinkSchema } from '@/data/zod-schemas/new-link-schema'
 import { useCreateLink } from '@/data/db-hooks/link-hooks'
 
-export function DashboardBoxNewLink({ box }: { box: Box }) {
+export function CreateLink({ box }: { box: Box }) {
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const { mutate } = useCreateLink(box.id)

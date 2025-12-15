@@ -1,8 +1,8 @@
 import Image from "next/image"
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { DashboardHeader } from "@/components/dashboard-header";
-import { DashboardFooter } from "@/components/dashboard-footer";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 export default async function Home() {
 
@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen flex flex-col justify-between">
-      <DashboardHeader session={session} />
+      <Header session={session} />
 
       <div className="w-full px-6 flex flex-col gap-10 items-center justify-center">
         <Image
@@ -33,7 +33,7 @@ export default async function Home() {
         </p>
       </div>
 
-      <DashboardFooter />
+      <Footer />
     </main>
   )
 }

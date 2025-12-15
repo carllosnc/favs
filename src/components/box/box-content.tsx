@@ -4,7 +4,7 @@ import { useBoxBySlug } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import { BoxLinks } from "./box-links"
 import { BoxSheet } from "./box-sheet"
-import { Switch } from "./ui/switch"
+import { Switch } from "../ui/switch"
 import { useState } from "react"
 
 type Props = {

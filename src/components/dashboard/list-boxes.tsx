@@ -4,12 +4,12 @@ import { useBoxes } from "@/data/db-hooks/box-hooks"
 import { Session } from "@/types/session"
 import { useState } from "react"
 import { Box } from "@/types/db-types"
-import { Input } from "./ui/input"
+import { Input } from "../ui/input"
 import { IoFilter } from "react-icons/io5"
-import { Skeleton } from "./ui/skeleton"
-import { DashboardBoxCard } from "./dashboard-box-card"
+import { Skeleton } from "../ui/skeleton"
+import { BoxCard } from "./box-card"
 
-export function DashboardListBoxes({ session }: { session: Session }) {
+export function ListBoxes({ session }: { session: Session }) {
   const { data: boxes, isLoading } = useBoxes(session?.user.id!)
   const [filter, setFilter] = useState<string>()
 
@@ -57,7 +57,7 @@ export function DashboardListBoxes({ session }: { session: Session }) {
 
       <div className="flex flex-col gap-2.5">
         {
-          boxes?.filter(filterBox).map((box: Box) => (<DashboardBoxCard key={box.id} box={box} />))
+          boxes?.filter(filterBox).map((box: Box) => (<BoxCard key={box.id} box={box} />))
         }
       </div>
     </div>

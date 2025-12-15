@@ -14,14 +14,14 @@ import {
 
 import { Box } from "@/types/db-types";
 import { Session } from "@/types/session";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { FiTrash } from "react-icons/fi";
 import { useDeleteBox } from "@/data/db-hooks/box-hooks";
-import { Spinner } from "./ui/spinner";
+import { Spinner } from "../ui/spinner";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export function DashboardBoxDelete({ box, session }: { box: Box, session: Session }) {
+export function Deletebox({ box, session }: { box: Box, session: Session }) {
   const { mutate, isPending, isSuccess } = useDeleteBox({ userId: session!.user.id! })
   const router = useRouter()
 

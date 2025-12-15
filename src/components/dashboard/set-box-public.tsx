@@ -1,11 +1,11 @@
 import { Box } from "@/types/db-types";
-import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
+import { Switch } from "../ui/switch";
+import { Label } from "../ui/label";
 import { useState } from "react";
 import { useUpdateBox } from "@/data/db-hooks/box-hooks";
 import { Session } from "@/types/session";
 
-export function DashboardBoxSetPublic({ box, session }: { box: Box, session: Session }) {
+export function SetBoxPublic({ box, session }: { box: Box, session: Session }) {
   const [ isPublic, setIsPublic ] = useState<0 | 1>(box.is_public ? 1 : 0)
   const { mutate, isPending, isError, error, isSuccess } = useUpdateBox(
     { userId: session!.user.id!, boxId: box.id }

@@ -10,7 +10,7 @@ type props = {
   link: Link,
 }
 
-export function DashboardBoxLinkCard({ link }: props) {
+export function LinkCard({ link }: props) {
   const { mutate, isPending } = useDeleteLink(link.box_id!)
 
   function getFavicon(url: string) {

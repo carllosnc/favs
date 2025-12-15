@@ -1,6 +1,6 @@
-import { DashboardFooter } from "@/components/dashboard-footer"
-import { ProfileHeader } from "@/components/profile-header"
-import { ProfileBoxes } from "@/components/profile-boxes"
+import { Footer } from "@/components/footer"
+import { ProfileHeader } from "@/components/profile/profile-header"
+import { ProfileBoxes } from "@/components/profile/profile-boxes"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -23,7 +23,7 @@ export default async function PublicBox({ params }: any) {
       <div className="w-full flex-1">
         <ProfileBoxes namespace={namespace} />
       </div>
-      <DashboardFooter />
+      <Footer />
     </div>
   )
 }

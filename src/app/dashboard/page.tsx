@@ -1,7 +1,7 @@
-import { DashboardFooter } from "@/components/dashboard-footer"
-import { DashboardHeader } from "@/components/dashboard-header"
-import { DashboardNewBox } from "@/components/dashboard-new-box"
-import { DashboardListBoxes } from "@/components/dashboard-list-boxes"
+import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
+import { CreateBox } from "@/components/dashboard/create-box"
+import { ListBoxes } from "@/components/dashboard/list-boxes"
 import { Button } from "@/components/ui/button"
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers"
@@ -17,7 +17,7 @@ export default async function Dashboard(){
 
   return (
     <div className="flex flex-col justify-between items-center w-full min-h-screen">
-      <DashboardHeader session={session} />
+      <Header session={session} />
 
       <div className="flex-1 flex w-full pt-5 flex-col gap-5">
         <div className="flex items-center justify-between gap-2.5 shadow-sm rounded-md bg-white p-2.5">
@@ -26,11 +26,11 @@ export default async function Dashboard(){
               <LuUser /> Public profile
             </Button>
           </Link>
-          <DashboardNewBox session={session} />
+          <CreateBox session={session} />
         </div>
-        <DashboardListBoxes session={session} />
+        <ListBoxes session={session} />
       </div>
-      <DashboardFooter />
+      <Footer />
     </div>
   )
 }

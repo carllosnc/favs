@@ -3,7 +3,7 @@
 import { useBoxesByNamespace } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import { LuBox } from "react-icons/lu"
-import { Skeleton } from "./ui/skeleton"
+import { Skeleton } from "../ui/skeleton"
 
 export function ProfileBoxes({ namespace }: { namespace: string }) {
   const { data: boxes, isLoading } = useBoxesByNamespace(namespace)
