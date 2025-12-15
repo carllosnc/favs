@@ -10,6 +10,7 @@ export const boxes = sqliteTable('boxes', {
   user_id: text('user_id'),
   author_name: text('author_name'),
   author_namespace: text('author_namespace'),
+  total_links: int('total_links').default(0),
   is_public: int('is_public').default(1),
   created_at: text('created_at').default(Date().toString()),
 }, (table) => {
