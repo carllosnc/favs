@@ -4,12 +4,14 @@ import { formatDate } from "@/lib/utils"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { BoxCardActions } from "./box-card-actions"
+import { Session } from "@/types/session"
 
 type Props = {
   box: Box
+  session: Session
 }
 
-export function BoxCard({ box }: Props) {
+export function BoxCard({ box, session }: Props) {
   const [url, setUrl] = useState<Location>()
 
   useEffect(() => {
@@ -41,13 +43,16 @@ export function BoxCard({ box }: Props) {
               </div>
             </div>
 
-            <BoxCardActions box={box} />
+            <BoxCardActions box={box} session={session} />
 
           </div>
           <hr className="w-full" />
-          <span className="text-blue-600 text-sm">
-            {url?.host}/box/{box.author_namespace}/{box.slug}
-          </span>
+          <div className="flex justify-between">
+            <span className="text-blue-600 text-sm">
+              {url?.host}/box/{box.author_namespace}/{box.slug}
+            </span>
+            <span className="text-sm text-neutral-500"> { box.total_links } links </span>
+          </div>
         </div>
       </div>
     </Link>
