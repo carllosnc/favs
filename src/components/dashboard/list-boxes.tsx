@@ -61,7 +61,7 @@ export function ListBoxes({ session }: Props) {
 
       <div className="flex flex-col gap-2.5">
         {
-          boxes?.filter(filterBox).map((box: Box) => (<BoxCard key={box.id} box={box} />))
+          boxes?.filter(filterBox).map((box: Box) => (<BoxCard key={box.id} box={box} session={session} />))
         }
       </div>
     </div>
