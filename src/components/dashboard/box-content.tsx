@@ -6,7 +6,7 @@ import { Box } from "@/types/db-types"
 import { Session } from "@/types/session"
 import { Button } from "../ui/button"
 import { FaChevronLeft } from "react-icons/fa";
-import { FiGlobe } from "react-icons/fi";
+import { FiGlobe, FiTrash } from "react-icons/fi";
 import { AllBoxesSheet } from "./all-boxes-sheet"
 import { CreateLink } from "./create-link"
 import { LinkList } from "./link-list"
@@ -59,7 +59,9 @@ export function BoxContent({boxId, session}: Props) {
           </a>
 
           <EditBox session={session} box={box} />
-          <Deletebox box={box} session={session} />
+          <Deletebox box={box} session={session}>
+            <Button variant="outline" size="icon"> <FiTrash /> </Button>
+          </Deletebox>
         </div>
       </div>
 
