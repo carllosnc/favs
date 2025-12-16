@@ -11,7 +11,7 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "@radix-ui/react-label"
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { newBoxSchema } from "@/data/zod-schemas/new-box-schema"
 import { useUpdateBox } from "@/data/db-hooks/box-hooks"
@@ -24,9 +24,10 @@ import { FiEdit } from "react-icons/fi"
 type Props = {
   session: Session
   box: Box
+  children: ReactNode
 }
 
-export function EditBox({ session, box }: Props){
+export function EditBox({ session, box, children }: Props){
   const [open, setOpen] = useState(false)
 
   const { mutate, isPending, isError, error, isSuccess } = useUpdateBox(
@@ -65,7 +66,7 @@ export function EditBox({ session, box }: Props){
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon"> <FiEdit /> </Button>
+        {children}
       </DialogTrigger>
       <DialogContent className="max-w-[400px]">
         <DialogHeader>
