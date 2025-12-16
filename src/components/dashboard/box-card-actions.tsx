@@ -38,7 +38,7 @@ export function BoxCardActions({ box, session }: Props) {
           </Link>
         </DropdownMenuCheckboxItem>
 
-        <DropdownMenuCheckboxItem className="p-0" onClick={(e) => { e.preventDefault() }}>
+        <DropdownMenuCheckboxItem className="p-0" onClick={(e) => { e.preventDefault() }} >
           <Deletebox box={box} session={session}>
             <span className="w-full h-full px-2.5 py-1.5 text-red-500"> Delete box </span>
           </Deletebox>
