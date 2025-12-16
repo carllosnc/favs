@@ -22,7 +22,7 @@ export default async function Home() {
           height={200}
         />
 
-        <h1 className="md:text-[30px] md:leading-[35px] text-center leading-[50px] font-medium text-[50px] w-full max-w-[700px]">
+        <h1 className="md:text-[30px] md:leading-[35px] text-center font-medium text-[50px] w-full max-w-[700px]">
           The better place to your favorite links
         </h1>
 

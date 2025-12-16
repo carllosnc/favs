@@ -51,8 +51,6 @@ export function BoxCard({ box, session }: Props) {
           <hr className="w-full" />
 
           <div className="flex justify-between items-center px-[15px] py-2.5">
-            <span className="text-sm text-neutral-500"> { box.total_links } links </span>
-
             <div className="flex gap-2.5 items-center">
               <a href={`/box/${box.author_namespace!}/${box.slug}`} target="_blank" rel="noreferrer">
                 <Button variant="outline" size="icon"> <FiGlobe /> </Button>
@@ -66,6 +64,8 @@ export function BoxCard({ box, session }: Props) {
                 <Button variant="outline" size="icon"> <FiTrash /> </Button>
               </Deletebox>
             </div>
+
+            <span className="text-sm text-neutral-500"> { box.total_links } links </span>
           </div>
         </div>
       </div>

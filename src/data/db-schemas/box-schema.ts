@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm'
 import { int, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
 
 export const boxes = sqliteTable('boxes', {
@@ -12,7 +13,7 @@ export const boxes = sqliteTable('boxes', {
   author_namespace: text('author_namespace'),
   total_links: int('total_links').default(0),
   is_public: int('is_public').default(1),
-  created_at: text('created_at').default(Date().toString()),
+  created_at: text('created_at').notNull().default(sql`(current_timestamp)`),
 }, (table) => {
   return {
     unique_box: unique('unique_box')
