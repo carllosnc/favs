@@ -48,6 +48,8 @@ export function EditBox({ session, box, children }: Props){
   })
 
   const onSubmit = (data: any) => {
+    console.log('Calling here!')
+
     const updatedBox = structuredClone(box)
     updatedBox.title = data.title.trim()
     updatedBox.slug = getSlug(data.title.trim())
@@ -116,7 +118,7 @@ export function EditBox({ session, box, children }: Props){
 
           <div>
             <Button type="submit" disabled={isPending}>
-              {isPending ? 'Creating...' : 'Create'}
+              {isPending ? 'Editing...' : 'Edit'}
             </Button>
           </div>
         </form>
