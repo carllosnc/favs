@@ -54,6 +54,7 @@ export function useUpdateBox({ userId, boxId }: { userId: string, boxId: string 
   return useMutation({
     mutationFn: (data: UpdateBox) => updateBox(userId, data),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["boxes"] })
       queryClient.invalidateQueries({ queryKey: ["box", boxId] })
     },
   })
