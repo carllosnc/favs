@@ -13,21 +13,19 @@ import {
 } from "@/components/ui/alert-dialog"
 
 import { Box } from "@/types/db-types";
-import { Session } from "@/types/session";
-import { Button } from "../ui/button";
-import { FiTrash } from "react-icons/fi";
 import { useDeleteBox } from "@/data/db-hooks/box-hooks";
 import { Spinner } from "../ui/spinner";
-import { ReactElement, ReactNode, useEffect } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { SessionContext } from "@/context/session-context";
 
 type Props = {
   box: Box
-  session: Session
   children: ReactNode
 }
 
-export function Deletebox({ box, session, children }: Props) {
+export function Deletebox({ box, children }: Props) {
+  const session = useContext(SessionContext)
   const { mutate, isPending, isSuccess } = useDeleteBox({ userId: session!.user.id! })
   const router = useRouter()
 

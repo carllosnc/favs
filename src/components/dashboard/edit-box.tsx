@@ -11,23 +11,22 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "@radix-ui/react-label"
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ReactNode, useEffect, useState } from "react"
+import { ReactNode, useContext, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { newBoxSchema } from "@/data/zod-schemas/new-box-schema"
 import { useUpdateBox } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import { extractErrorDetails } from "@/lib/error"
 import { getSlug } from "@/lib/utils"
-import { Session } from "@/types/session"
-import { FiEdit } from "react-icons/fi"
+import { SessionContext } from "@/context/session-context"
 
 type Props = {
-  session: Session
   box: Box
   children: ReactNode
 }
 
-export function EditBox({ session, box, children }: Props){
+export function EditBox({ box, children }: Props){
+  const session = useContext(SessionContext)
   const [open, setOpen] = useState(false)
 
   const { mutate, isPending, isError, error, isSuccess } = useUpdateBox(

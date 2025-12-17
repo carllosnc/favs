@@ -1,4 +1,4 @@
-import { BoxContent } from "@/components/box/box-content"
+import { BoxPageContent } from "@/components/box/box-page-content"
 import Link from "next/link"
 import Image from "next/image"
 import { Footer } from "@/components/footer"
@@ -18,7 +18,7 @@ export default async function BoxPage( { params }: any ) {
         />
       </Link>
 
-      <BoxContent namespace={namespace} slug={slug} />
+      <BoxPageContent namespace={namespace} slug={slug} />
 
       <Footer />
     </div>

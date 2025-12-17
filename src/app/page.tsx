@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen w-full flex flex-col justify-between">
-      <Header session={session} />
+      <Header />
 
       <div className="w-full px-6 flex flex-col gap-10 items-center justify-center">
         <Image

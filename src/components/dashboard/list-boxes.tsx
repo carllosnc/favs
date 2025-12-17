@@ -1,19 +1,16 @@
 "use client"
 
 import { useBoxes } from "@/data/db-hooks/box-hooks"
-import { Session } from "@/types/session"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Box } from "@/types/db-types"
 import { Input } from "../ui/input"
 import { IoFilter } from "react-icons/io5"
 import { Skeleton } from "../ui/skeleton"
 import { BoxCard } from "./box-card"
+import { SessionContext } from "@/context/session-context"
 
-type Props = {
-  session: Session
-}
-
-export function ListBoxes({ session }: Props) {
+export function ListBoxes() {
+  const session = useContext(SessionContext)
   const { data: boxes, isLoading } = useBoxes(session?.user.id!)
   const [filter, setFilter] = useState<string>()
 
@@ -51,9 +48,7 @@ export function ListBoxes({ session }: Props) {
       }
 
       <div className="flex flex-col gap-2.5">
-        {
-          boxes?.filter(filterBox).map((box: Box) => (<BoxCard key={box.id} box={box} session={session} />))
-        }
+        { boxes?.filter(filterBox).map((box: Box) => (<BoxCard key={box.id} box={box} />)) }
       </div>
     </div>
   )

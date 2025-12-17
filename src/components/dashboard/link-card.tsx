@@ -1,10 +1,11 @@
-import type { Box, Link } from '@/types/db-types'
+import type { Link } from '@/types/db-types'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { Trash } from 'lucide-react'
 import { toast } from 'sonner'
 import { useDeleteLink } from '@/data/db-hooks/link-hooks'
 import { formatDate } from '@/lib/utils'
+import { MoveLinkButton } from './move-link-button'
 
 type props = {
   link: Link,
@@ -20,13 +21,13 @@ export function LinkCard({ link }: props) {
 
   async function deleteLink() {
     mutate(link.id!)
-    toast(`Link deleted`, {
-      description: link.title,
+    toast(`${link.title} removed`, {
+      description: link.url,
     })
   }
 
   return (
-    <article className="bg-white border border-white hover:border-blue-500 transition-all shadow-sm rounded-md p-[15px] gap-5 items-start overflow-hidden flex md:items-center md:flex-row">
+    <article className="bg-white border-2 border-white hover:bg-neutral-50 transition-all shadow-sm rounded-md p-[15px] gap-5 items-start overflow-hidden flex md:items-center md:flex-row">
       <a className="w-full" href={link.url!} target="_blank" rel="noreferrer">
         <div className="flex flex-col gap-[5px]">
           <small className="text-neutral-600">{formatDate(link.created_at!)}</small>
@@ -50,18 +51,22 @@ export function LinkCard({ link }: props) {
         </div>
       </a>
 
-      <Button
-        disabled={isPending}
-        onClick={deleteLink}
-        variant="outline"
-        size="icon"
-      >
-        {isPending ? (
-          <Spinner className="size-4" />
-        ) : (
-          <Trash className="text-color" size={15} />
-        )}
-      </Button>
+      <div className="flex flex-col gap-2.5">
+        <Button
+          disabled={isPending}
+          onClick={deleteLink}
+          variant="outline"
+          size="icon-sm"
+        >
+          {isPending ? (
+            <Spinner className="size-4" />
+          ) : (
+            <Trash className="text-color" size={15} />
+          )}
+        </Button>
+
+        <MoveLinkButton />
+      </div>
     </article>
   )
 }

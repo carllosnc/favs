@@ -2,33 +2,19 @@ import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { CreateBox } from "@/components/dashboard/create-box"
 import { ListBoxes } from "@/components/dashboard/list-boxes"
-import { Button } from "@/components/ui/button"
-import { auth } from "@/lib/auth"
-import { headers } from "next/headers"
-import { Session } from "@/types/session"
-import Link from "next/link"
-import { getNamespace } from "@/lib/utils"
-import { LuUser } from "react-icons/lu";
+import { GoToProfileButton } from "@/components/dashboard/go-to-profile-button"
 
 export default async function Dashboard(){
-  const session: Session = await auth.api.getSession({
-    headers: await headers(),
-  })
-
   return (
     <div className="flex flex-col justify-between items-center w-full min-h-screen">
-      <Header session={session} />
+      <Header />
 
       <div className="flex-1 flex w-full pt-5 flex-col gap-5">
         <div className="flex items-center justify-between gap-2.5 shadow-sm rounded-md bg-white p-2.5">
-          <Link className="inline-flex" href={`/profile/${getNamespace(session!.user.email)}`}>
-            <Button variant="outline" className="cursor-pointer">
-              <LuUser /> Public profile
-            </Button>
-          </Link>
-          <CreateBox session={session} />
+          <GoToProfileButton />
+          <CreateBox />
         </div>
-        <ListBoxes session={session} />
+        <ListBoxes />
       </div>
       <Footer />
     </div>

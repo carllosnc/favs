@@ -13,12 +13,12 @@ import { useBoxes } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import Link from "next/link"
 import { MdOutlineMenu } from "react-icons/md"
+import { SessionContext } from "@/context/session-context"
+import { useContext } from "react"
 
-type Props = {
-  session: Session
-}
 
-export function AllBoxesSheet({ session }: Props) {
+export function AllBoxesSheet() {
+  const session = useContext(SessionContext)
   const { data, isLoading } = useBoxes(session!.user.id!)
 
   return (

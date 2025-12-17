@@ -27,7 +27,7 @@ export function BoxCardActions({ box, session }: Props) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="start">
         <DropdownMenuCheckboxItem className="p-0" onClick={(e) => { e.preventDefault() }}>
-          <EditBox session={session} box={box}>
+          <EditBox box={box}>
             <span className="w-full h-full px-2.5 py-1.5"> Rename box </span>
           </EditBox>
         </DropdownMenuCheckboxItem>
@@ -39,7 +39,7 @@ export function BoxCardActions({ box, session }: Props) {
         </DropdownMenuCheckboxItem>
 
         <DropdownMenuCheckboxItem className="p-0" onClick={(e) => { e.preventDefault() }} >
-          <Deletebox box={box} session={session}>
+          <Deletebox box={box}>
             <span className="w-full h-full px-2.5 py-1.5 text-red-500"> Delete box </span>
           </Deletebox>
         </DropdownMenuCheckboxItem>

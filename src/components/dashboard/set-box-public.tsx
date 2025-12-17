@@ -1,18 +1,19 @@
 import { Box } from "@/types/db-types";
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useUpdateBox } from "@/data/db-hooks/box-hooks";
-import { Session } from "@/types/session";
+import { SessionContext } from "@/context/session-context";
 
 type Props = {
   box: Box
-  session: Session
 }
 
-export function SetBoxPublic({ box, session }: Props) {
+export function SetBoxPublic({ box }: Props) {
+  const session = useContext(SessionContext)
+
   const [ isPublic, setIsPublic ] = useState<0 | 1>(box.is_public ? 1 : 0)
-  const { mutate, isPending, isError, error, isSuccess } = useUpdateBox(
+  const { mutate, isPending  } = useUpdateBox(
     { userId: session!.user.id!, boxId: box.id }
   )
 
@@ -21,6 +22,7 @@ export function SetBoxPublic({ box, session }: Props) {
       <label className="inline-flex gap-1.5 items-center">
         <div className="flex items-center space-x-2">
           <Switch
+            disabled={isPending}
             checked={isPublic === 1}
             onCheckedChange={() => {
               setIsPublic(() => {

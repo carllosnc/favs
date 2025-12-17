@@ -1,5 +1,5 @@
 import { db } from '@/database'
-import type { NewLink } from '@/types/db-types'
+import type { NewLink, Link, Box } from '@/types/db-types'
 import { links } from '@/data/db-schemas/link-schema'
 import { boxes } from '@/data/db-schemas/box-schema'
 import { eq, and, sql } from 'drizzle-orm'
@@ -32,4 +32,9 @@ export async function deleteLink(id: string) {
     .returning()
 
   return deleted
+}
+
+export async function moveLink(link: NewLink, linkId: string) {
+  await createLink(link)
+  await deleteLink(linkId)
 }

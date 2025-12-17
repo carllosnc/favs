@@ -12,7 +12,7 @@ type Props = {
   slug: string
 }
 
-export function BoxContent({ namespace, slug }: Props) {
+export function BoxPageContent({ namespace, slug }: Props) {
   const { data, isLoading } = useBoxBySlug(namespace, slug)
   const [ isTiny, setIsTiny ] = useState<boolean>(false)
   const box: Box = data?.[0]!

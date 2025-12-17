@@ -11,23 +11,20 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "@radix-ui/react-label"
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { newBoxSchema } from "@/data/zod-schemas/new-box-schema"
 import { useCreateBox } from "@/data/db-hooks/box-hooks"
 import type { NewBox } from "@/types/db-types"
 import { extractErrorDetails } from "@/lib/error"
 import { getNamespace, getSlug } from "@/lib/utils"
-import { Session } from "@/types/session"
 import { LuBox } from "react-icons/lu"
+import { SessionContext } from "@/context/session-context"
 
-type Props = {
-  session: Session
-}
-
-export function CreateBox({ session }: Props){
+export function CreateBox(){
   const [open, setOpen] = useState(false)
   const { mutate, isPending, isError, error, isSuccess } = useCreateBox()
+  const session = useContext(SessionContext)
 
   const {
     register,

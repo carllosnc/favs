@@ -1,10 +1,15 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button";
 import Link from "next/link"
 import { SessionButton } from "@/components/session-button";
-import type { Session } from "@/types/session";
+import { SessionContext } from "@/context/session-context";
+import { useContext } from "react";
 
-export function Header({ session }: { session: Session }) {
+export function Header() {
+  const session = useContext(SessionContext)
+
   return (
     <header className="py-2.5 w-full">
       <div className="flex justify-between items-center w-full m-auto">
@@ -35,6 +40,7 @@ export function Header({ session }: { session: Session }) {
             />
             </div>
           }
+
           { !session && <Link href="/sign-in"><Button> Sign in </Button></Link> }
         </div>
       </div>

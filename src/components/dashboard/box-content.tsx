@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { useBox } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
-import { Session } from "@/types/session"
 import { Button } from "../ui/button"
 import { FaChevronLeft } from "react-icons/fa";
 import { FiEdit, FiGlobe, FiTrash } from "react-icons/fi";
@@ -13,13 +12,16 @@ import { LinkList } from "./link-list"
 import { EditBox } from "./edit-box"
 import { SetBoxPublic } from "./set-box-public"
 import { Deletebox } from "./delete-box"
+import { SessionContext } from "@/context/session-context"
+import { useContext } from "react"
 
 type Props = {
   boxId: string
-  session: Session
 }
 
-export function BoxContent({boxId, session}: Props) {
+export function BoxContent({boxId }: Props) {
+  const session = useContext(SessionContext)
+
   const { data, isLoading } = useBox(boxId, session?.user.id!)
   const box: Box = data?.[0]!
 
@@ -47,24 +49,24 @@ export function BoxContent({boxId, session}: Props) {
 
       <div className="w-full p-2.5 flex md:flex-col md:justify-start md:items-start items-center justify-between gap-[15px] rounded-md bg-white shadow-sm">
         <div className="flex items-center gap-2.5">
-          <AllBoxesSheet session={session} />
+          <AllBoxesSheet />
           <CreateLink box={box} />
         </div>
 
         <hr className="border-neutral-200 w-full" />
 
         <div className="flex items-center gap-2.5">
-          <SetBoxPublic box={box} session={session} />
+          <SetBoxPublic box={box} />
 
           <a href={`/box/${box.author_namespace!}/${box.slug}`} target="_blank" rel="noreferrer">
             <Button variant="outline" size="icon"> <FiGlobe /> </Button>
           </a>
 
-          <EditBox session={session} box={box}>
+          <EditBox box={box}>
             <Button variant="outline" size="icon"> <FiEdit /> </Button>
           </EditBox>
 
-          <Deletebox box={box} session={session}>
+          <Deletebox box={box}>
             <Button variant="outline" size="icon"> <FiTrash /> </Button>
           </Deletebox>
         </div>

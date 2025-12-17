@@ -1,25 +1,20 @@
 import { LuBox, LuLock } from "react-icons/lu"
 import { Box } from "@/types/db-types"
 import { formatDate } from "@/lib/utils"
-import { useEffect, useState } from "react"
-import { Session } from "@/types/session"
+import { useContext } from "react"
 import { EditBox } from "./edit-box"
 import { Button } from "../ui/button"
 import { FiEdit, FiGlobe, FiTrash } from "react-icons/fi"
 import { Deletebox } from "./delete-box"
 import Link from "next/link"
+import { SessionContext } from "@/context/session-context"
 
 type Props = {
   box: Box
-  session: Session
 }
 
-export function BoxCard({ box, session }: Props) {
-  const [url, setUrl] = useState<Location>()
-
-  useEffect(() => {
-    setUrl(window.location)
-  }, [])
+export function BoxCard({ box }: Props) {
+  const session = useContext(SessionContext)
 
   return (
     <div
@@ -56,11 +51,11 @@ export function BoxCard({ box, session }: Props) {
                 <Button variant="outline" size="icon"> <FiGlobe /> </Button>
               </a>
 
-              <EditBox session={session} box={box}>
+              <EditBox box={box}>
                 <Button variant="outline" size="icon"> <FiEdit /> </Button>
               </EditBox>
 
-              <Deletebox box={box} session={session}>
+              <Deletebox box={box}>
                 <Button variant="outline" size="icon"> <FiTrash /> </Button>
               </Deletebox>
             </div>

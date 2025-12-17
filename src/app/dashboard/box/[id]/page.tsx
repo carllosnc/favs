@@ -14,9 +14,9 @@ export default async function DashboardBoxPage({ params }: any ){
 
   return (
     <div className="flex flex-col justify-between items-center w-full min-h-screen">
-      <Header session={session} />
+      <Header />
       <div className="flex-1 flex w-full pt-5 flex-col gap-2.5">
-        <BoxContent boxId={id} session={session} />
+        <BoxContent boxId={id} />
       </div>
       <Footer />
     </div>

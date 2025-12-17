@@ -9,7 +9,7 @@ import { headers } from "next/headers"
 import { Button } from "@/components/ui/button"
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import Link from "next/link";
-import { Suspense } from "react";
+import { SessionProvider } from "@/context/session-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,18 +47,21 @@ export default async function RootLayout({
         className={`${interSans.className} ${geistMono.className} antialiased bg-neutral-100`}
       >
         <div className="w-full m-auto max-w-[800px] border-x border-neutral-300 min-h-screen flex flex-col justify-between items-center lg:border-transparent px-2.5">
-            <ReactQueryProvider>
+          <ReactQueryProvider>
+            <SessionProvider session={session}>
               {children}
-            </ReactQueryProvider>
+            </SessionProvider>
+          </ReactQueryProvider>
         </div>
 
-          { session &&
-            <Link href={`/dashboard/`} className="fixed bottom-5 right-5 leading-5">
-              <Button size="icon-lg" className="cursor-pointer">
-                <MdOutlineSpaceDashboard />
-              </Button>
-            </Link>
-          }
+        {
+          session &&
+          <Link href={`/dashboard/`} className="fixed bottom-5 right-5 leading-5">
+            <Button size="icon-lg" className="cursor-pointer">
+              <MdOutlineSpaceDashboard />
+            </Button>
+          </Link>
+        }
 
         <Toaster />
       </body>
