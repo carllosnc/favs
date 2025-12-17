@@ -9,6 +9,7 @@ import { headers } from "next/headers"
 import { Button } from "@/components/ui/button"
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,9 +47,11 @@ export default async function RootLayout({
         className={`${interSans.className} ${geistMono.className} antialiased bg-neutral-100`}
       >
         <div className="w-full m-auto max-w-[800px] border-x border-neutral-300 min-h-screen flex flex-col justify-between items-center lg:border-transparent px-2.5">
-          <ReactQueryProvider>
-            {children}
-          </ReactQueryProvider>
+          <Suspense>
+            <ReactQueryProvider>
+              {children}
+            </ReactQueryProvider>
+          </Suspense>
         </div>
 
           { session &&

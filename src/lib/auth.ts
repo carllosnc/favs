@@ -4,6 +4,12 @@ import { db } from "@/database"; // your drizzle instance
 import * as authSchemas from "@/data/db-schemas/auth-schema"
 
 export const auth = betterAuth({
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+    }
+  },
   socialProviders: {
     google: {
       prompt: "select_account",
