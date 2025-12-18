@@ -5,9 +5,9 @@ import { useContext, useState } from "react"
 import { Box } from "@/types/db-types"
 import { Input } from "../ui/input"
 import { IoFilter } from "react-icons/io5"
-import { Skeleton } from "../ui/skeleton"
 import { BoxCard } from "./box-card"
 import { SessionContext } from "@/context/session-context"
+import Loading from "../loading"
 
 export function ListBoxes() {
   const session = useContext(SessionContext)
@@ -18,17 +18,7 @@ export function ListBoxes() {
     return !filter || box.title.toLowerCase().includes(filter.toLowerCase())
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col gap-2.5 w-full" >
-        {
-          Array(4).fill(0).map((_, i) => (
-            <Skeleton key={i} className="h-20 w-full rounded-md bg-white" />)
-          )
-        }
-      </div>
-    )
-  }
+  if (isLoading) return <Loading />
 
   return (
     <div className="flex flex-col gap-5">

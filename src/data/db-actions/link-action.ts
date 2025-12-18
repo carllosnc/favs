@@ -18,7 +18,6 @@ export async function createLink(link: NewLink) {
 
 export async function getLinks(boxId: string) {
   const allLinks = (await db.select().from(links).where(eq(links.box_id, boxId))).reverse()
-
   return allLinks
 }
 

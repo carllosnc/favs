@@ -2,6 +2,7 @@ import { db } from '@/database'
 import { boxes } from '@/data/db-schemas/box-schema'
 import type { Box, NewBox, UpdateBox } from '@/types/db-types'
 import { eq, asc, desc, and, sql } from 'drizzle-orm'
+import { links } from '../db-schemas/link-schema'
 
 export async function createBox(box: NewBox) {
   return await db.insert(boxes).values(box).returning()
@@ -31,10 +32,18 @@ export async function getBoxBySlug(namespace: string, slug: string) {
 }
 
 export async function getBoxById(id: string, userId: string) {
-  return await db
+  const box = await db
     .select()
     .from(boxes)
-    .where(and(eq(boxes.id, id), eq(boxes.user_id, userId)))
+    .where(and(eq(boxes.id, id), eq(boxes.user_id, userId))).get()
+
+    let allLinks = null
+
+    if(box){
+      allLinks = (await db.select().from(links).where(eq(links.box_id, box?.id!))).reverse()
+    }
+
+    return { box: box, links: allLinks }
 }
 
 export async function updateBox(userId: string, box: UpdateBox) {

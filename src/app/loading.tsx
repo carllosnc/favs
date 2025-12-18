@@ -1,9 +1,7 @@
-import { Spinner } from "@/components/ui/spinner";
+import Loading from "@/components/loading";
 
-export default function Loading(){
+export default function LoadingPage(){
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <Spinner className="size-8" />
-    </div>
+    <Loading />
   )
 }

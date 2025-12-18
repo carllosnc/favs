@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import type { Link as LinkType } from "@/types/db-types"
 import { useBox } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import { Button } from "../ui/button"
@@ -14,6 +15,7 @@ import { SetBoxPublic } from "./set-box-public"
 import { Deletebox } from "./delete-box"
 import { SessionContext } from "@/context/session-context"
 import { useContext } from "react"
+import Loading from "../loading"
 
 type Props = {
   boxId: string
@@ -23,12 +25,20 @@ export function BoxContent({boxId }: Props) {
   const session = useContext(SessionContext)
 
   const { data, isLoading } = useBox(boxId, session?.user.id!)
-  const box: Box = data?.[0]!
+  const box = data?.box as Box
+  const links = data?.links as LinkType[]
 
-  if (isLoading) {
+  if (isLoading) return <Loading />
+
+  if (!box) {
     return (
-      <div className="flex flex-col gap-2.5 w-full" >
-        <span className="text-sm"> Loading... </span>
+      <div className="flex flex-col flex-1 gap-5 w-full pt-10 justify-center items-center" >
+        <span className="text-sm"> Box not found </span>
+        <Link href={`/dashboard`} prefetch>
+          <Button className="cursor-pointer text-blue-500" variant="outline" >
+            ← Back to dashboard
+          </Button>
+        </Link>
       </div>
     )
   }
@@ -73,7 +83,8 @@ export function BoxContent({boxId }: Props) {
         </div>
       </div>
 
-      <LinkList box={box} />
+      {/* list all links here! */}
+      <LinkList links={links} />
     </div>
   )
 }
