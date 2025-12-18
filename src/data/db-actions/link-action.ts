@@ -22,8 +22,8 @@ export async function getLinks(boxId: string) {
   return allLinks
 }
 
-export async function deleteLink(id: string) {
-  const deleted = await db.delete(links).where(eq(links.id, id)).returning()
+export async function deleteLink(linkId: string) {
+  const deleted = await db.delete(links).where(eq(links.id, linkId)).returning()
 
   await db
     .update(boxes)
@@ -34,7 +34,7 @@ export async function deleteLink(id: string) {
   return deleted
 }
 
-export async function moveLink(link: NewLink, linkId: string) {
+export async function moveLink(link: NewLink, oldLinkId: string) {
   await createLink(link)
-  await deleteLink(linkId)
+  await deleteLink(oldLinkId)
 }

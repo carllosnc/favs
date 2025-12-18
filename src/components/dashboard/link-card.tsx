@@ -65,7 +65,7 @@ export function LinkCard({ link }: props) {
           )}
         </Button>
 
-        <MoveLinkButton />
+        <MoveLinkButton link={link} />
       </div>
     </article>
   )

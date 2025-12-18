@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { NewLink } from "@/types/db-types";
-import { createLink, getLinks, deleteLink } from "../db-actions/link-action";
+import { Link, NewLink } from "@/types/db-types";
+import { createLink, getLinks, deleteLink, moveLink } from "../db-actions/link-action";
 
 export function useCreateLink(boxId: string) {
   const queryClient = useQueryClient();
@@ -25,6 +25,17 @@ export function useDeleteLink(boxId: string) {
     mutationFn: (id: string) => deleteLink(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["links", boxId] })
+    },
+  })
+}
+
+export function useMoveLink(link: Link) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (movedLink: NewLink) => moveLink(movedLink, link.id!),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["links", link.box_id] })
+      queryClient.invalidateQueries({ queryKey: ["box", link.box_id] })
     },
   })
 }
