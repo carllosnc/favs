@@ -1,11 +1,12 @@
 "use client"
 
 import { useBoxBySlug } from "@/data/db-hooks/box-hooks"
-import { Box } from "@/types/db-types"
+import { Box, Link } from "@/types/db-types"
 import { BoxLinks } from "./box-links"
 import { BoxSheet } from "./box-sheet"
 import { Switch } from "../ui/switch"
 import { useState } from "react"
+import Loading from "../loading"
 
 type Props = {
   namespace: string
@@ -15,16 +16,17 @@ type Props = {
 export function BoxPageContent({ namespace, slug }: Props) {
   const { data, isLoading } = useBoxBySlug(namespace, slug)
   const [ isTiny, setIsTiny ] = useState<boolean>(false)
-  const box: Box = data?.[0]!
+  const box: Box = data?.box as Box
+  const links = data?.links as Link[]
 
   if (isLoading) {
-    return ( <div /> )
+    return ( <Loading /> )
   }
 
   if (!box) {
     return (
       <div className="flex pt-5 w-full flex-col items-center flex-1 gap-5">
-        <span>Box not found</span>
+        <span className="text-sm">Box not found</span>
         <BoxSheet namespace={namespace} />
       </div>
     )
@@ -47,7 +49,7 @@ export function BoxPageContent({ namespace, slug }: Props) {
 
       <hr  className="w-full border-neutral-300 max-w-[600px]" />
 
-      <BoxLinks boxId={box.id} isTiny={isTiny} />
+      <BoxLinks links={links} isTiny={isTiny} />
     </section>
   )
 }

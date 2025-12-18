@@ -19,9 +19,9 @@ export default async function PublicBox({ params }: any) {
       </Link>
 
       <ProfileHeader namespace={namespace} />
-      <div className="w-full flex-1">
-        <ProfileBoxes namespace={namespace} />
-      </div>
+
+      <ProfileBoxes namespace={namespace} />
+
       <Footer />
     </div>
   )

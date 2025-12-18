@@ -25,10 +25,18 @@ export async function getBoxesByNamespace(namespace: string) {
 }
 
 export async function getBoxBySlug(namespace: string, slug: string) {
-  return await db
+  const box = await db
     .select()
     .from(boxes)
-    .where(sql`${boxes.author_namespace} = ${namespace} AND ${boxes.slug} = ${slug} AND ${boxes.is_public} = true`)
+    .where(sql`${boxes.author_namespace} = ${namespace} AND ${boxes.slug} = ${slug} AND ${boxes.is_public} = true`).get()
+
+  let allLinks = null
+
+  if(box){
+    allLinks = (await db.select().from(links).where(eq(links.box_id, box?.id!))).reverse()
+  }
+
+  return { box: box, links: allLinks }
 }
 
 export async function getBoxById(id: string, userId: string) {

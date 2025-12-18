@@ -8,14 +8,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "../ui/button"
-import { Session } from "@/types/session"
 import { useBoxes } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import Link from "next/link"
 import { MdOutlineMenu } from "react-icons/md"
 import { SessionContext } from "@/context/session-context"
 import { useContext } from "react"
-
 
 export function AllBoxesSheet() {
   const session = useContext(SessionContext)
@@ -46,3 +44,4 @@ export function AllBoxesSheet() {
     </Sheet>
   )
 }
+

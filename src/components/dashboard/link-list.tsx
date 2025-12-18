@@ -1,5 +1,6 @@
 import { Link } from "@/types/db-types"
 import { LinkCard } from "./link-card"
+import { EmptyBox } from "../empty-box"
 
 type Props = {
   links: Link[]
@@ -7,11 +8,7 @@ type Props = {
 
 export function LinkList({ links }: Props) {
   if (links?.length === 0) {
-    return (
-      <div className="flex flex-col text-center gap-2.5 w-full" >
-        <span className="text-sm"> Empty box </span>
-      </div>
-    )
+    return <EmptyBox />
   }
 
   return (

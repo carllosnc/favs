@@ -1,15 +1,11 @@
 "use client"
 
-import { useLinks } from "@/data/db-hooks/link-hooks"
 import { Link } from "@/types/db-types"
 import { useEffect, useState } from "react"
 import { BsBox } from "react-icons/bs";
+import { EmptyBox } from "../empty-box";
 
-type Props = {
-  link: Link
-}
-
-function LinkImage({ link }: Props) {
+function LinkImage({ link }: { link: Link }) {
   const [validImage, setValidImage] = useState(true)
 
   useEffect(() => {
@@ -33,35 +29,21 @@ function LinkImage({ link }: Props) {
   )
 }
 
-export function BoxLinks({ boxId, isTiny }: { boxId: string, isTiny: boolean }) {
-  const { data, isLoading } = useLinks(boxId)
+export function BoxLinks({ isTiny, links }: { isTiny: boolean, links: Link[] }) {
 
   function getFavicon(url: string) {
     const host = new URL(url).hostname
     return `https://icons.duckduckgo.com/ip3/${host}.ico`
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col text-center gap-2.5 w-full" >
-        <span className="text-sm"> ... </span>
-      </div>
-    )
-  }
-
-  if (data?.length === 0) {
-    return (
-      <div className="flex flex-col justify-between items-center text-center gap-[30px] w-full max-w-[600px]" >
-        <span className="text-sm"> Empty box </span>
-        <BsBox className="text-[70px] text-neutral-300" />
-      </div>
-    )
+  if (links?.length === 0) {
+    return <EmptyBox />
   }
 
   return (
     <div className="flex flex-col w-full gap-[15px] justify-center items-center">
       {
-        data?.map((link: Link) => (
+        links?.map((link: Link) => (
           <a
             className="bg-white w-full max-w-[600px] p-[15px] flex flex-col gap-5 shadow-sm rounded-md border border-white hover:border-blue-500 transition-all"
             target="_blank"
