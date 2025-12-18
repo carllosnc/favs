@@ -8,6 +8,7 @@ export function useCreateLink(boxId: string) {
     mutationFn: (data: NewLink) => createLink(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["links", boxId] })
+      queryClient.invalidateQueries({ queryKey: ["box", boxId] })
     },
   })
 }
@@ -25,6 +26,7 @@ export function useDeleteLink(boxId: string) {
     mutationFn: (id: string) => deleteLink(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["links", boxId] })
+      queryClient.invalidateQueries({ queryKey: ["box", boxId] })
     },
   })
 }
