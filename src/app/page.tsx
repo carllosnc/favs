@@ -1,14 +1,8 @@
 import Image from "next/image"
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export default async function Home() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
   return (
     <main className="min-h-screen w-full flex flex-col justify-between">
       <Header />

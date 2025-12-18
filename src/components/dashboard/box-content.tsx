@@ -36,11 +36,12 @@ export function BoxContent({boxId }: Props) {
   return (
     <div className="flex flex-col gap-5">
       <header className="flex items-center gap-[25px]">
-        <Link href={`/dashboard`} >
+        <Link href={`/dashboard`} prefetch>
           <Button className="cursor-pointer" variant="outline" size="icon">
             <FaChevronLeft />
           </Button>
         </Link>
+
         <div className="flex flex-col gap-0">
           <h1 className="w-full text-lg"> {box.title} </h1>
           { box.description && <p className="text-sm text-neutral-500"> {box.description} </p> }

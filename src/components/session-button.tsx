@@ -34,10 +34,10 @@ export function SessionButton({ name, email, avatar }: HomeButtonProps) {
         <DropdownMenuLabel className="truncate"> {email} </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem className="px-2.5">
-          <Link href="/dashboard"> Dashboard </Link>
+          <Link href="/dashboard" prefetch> Dashboard </Link>
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem className="px-2.5">
-          <Link href="/"> Home </Link>
+          <Link href="/" prefetch> Home </Link>
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem onClick={ signOut } className="px-2.5 text-red-500">
           Logout

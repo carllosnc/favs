@@ -13,7 +13,7 @@ export function Header() {
   return (
     <header className="py-2.5 w-full">
       <div className="flex justify-between items-center w-full m-auto">
-        <Link href="/">
+        <Link href="/" prefetch>
           <Image
             className="w-fuill max-w-[30px] h-auto"
             src="/images/logo-symbol.svg"
@@ -27,7 +27,7 @@ export function Header() {
           {
             session &&
             <div className="flex gap-2.5">
-            <Link href="/dashboard">
+            <Link href="/dashboard" prefetch>
               <Button className="text-blue-500 cursor-pointer" variant="outline">
                 Your favs
               </Button>
@@ -41,7 +41,7 @@ export function Header() {
             </div>
           }
 
-          { !session && <Link href="/sign-in"><Button> Sign in </Button></Link> }
+          { !session && <Link href="/sign-in" prefetch><Button> Sign in </Button></Link> }
         </div>
       </div>
     </header>
