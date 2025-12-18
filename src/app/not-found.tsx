@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image"
 
 export default function NotFoundPage() {
   return (
     <div className="flex flex-col  items-center justify-center w-full h-screen">
 
-      <Image
+      <img
         className="w-fuill max-w-20 h-auto"
         src="/images/logo.svg"
         alt="logo"

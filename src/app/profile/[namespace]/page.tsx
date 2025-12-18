@@ -1,7 +1,6 @@
 import { Footer } from "@/components/footer"
 import { ProfileHeader } from "@/components/profile/profile-header"
 import { ProfileBoxes } from "@/components/profile/profile-boxes"
-import Image from "next/image"
 import Link from "next/link"
 
 export default async function PublicBox({ params }: any) {
@@ -10,7 +9,7 @@ export default async function PublicBox({ params }: any) {
   return (
     <div className="flex flex-col justify-between min-h-screen pt-10 gap-[30px] items-center w-full">
       <Link href="/">
-        <Image
+        <img
           className="w-fuill max-w-[120px] h-auto"
           src="/images/logo.svg"
           alt="logo"

@@ -2,14 +2,13 @@
 
 import { googleSignIn } from "@/lib/auth-utils";
 import { Button } from "@/components/ui/button";
-import Image from "next/image"
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 
 export default function SignInPage(){
   return (
     <div className="flex min-h-screen flex-col gap-10 justify-center items-center">
-      <Image
+      <img
         className="w-fuill max-w-[120px] h-auto"
         src="/images/logo.svg"
         alt="logo"

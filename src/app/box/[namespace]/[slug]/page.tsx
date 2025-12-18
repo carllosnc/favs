@@ -1,6 +1,5 @@
 import { BoxPageContent } from "@/components/box/box-page-content"
 import Link from "next/link"
-import Image from "next/image"
 import { Footer } from "@/components/footer"
 
 export default async function BoxPage( { params }: any ) {
@@ -9,7 +8,7 @@ export default async function BoxPage( { params }: any ) {
   return (
     <div className="flex flex-col w-full min-h-screen justify-between items-center gap-5">
       <Link className="mt-[50px]" href="/">
-        <Image
+        <img
           className="w-fuill max-w-[120px] h-auto"
           src="/images/logo.svg"
           alt="logo"

@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { Button } from "@/components/ui/button";
 import Link from "next/link"
 import { SessionButton } from "@/components/session-button";
@@ -14,7 +13,7 @@ export function Header() {
     <header className="py-2.5 w-full">
       <div className="flex justify-between items-center w-full m-auto">
         <Link href="/" prefetch>
-          <Image
+          <img
             className="w-fuill max-w-[30px] h-auto"
             src="/images/logo-symbol.svg"
             alt="logo"
