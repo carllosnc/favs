@@ -33,6 +33,7 @@ export function AllBoxesSheet() {
         <div className="px-5 flex flex-col gap-2.5">
           { data?.map((box: Box) => (
             <Link
+              prefetch
               key={box.id}
               href={`/dashboard/box/${box.id}`}
               className="text-sm text-blue-600 hover:underline">

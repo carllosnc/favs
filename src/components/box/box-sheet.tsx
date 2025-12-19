@@ -34,6 +34,7 @@ export function BoxSheet({ namespace }: Props) {
         <div className="px-5 flex flex-col gap-2.5">
           { data?.map((box: Box) => (
             <Link
+              prefetch
               key={box.id}
               href={`/box/${box.author_namespace!}/${box.slug}`}
               className="text-sm text-blue-600 hover:underline">
