@@ -56,7 +56,7 @@ export default async function RootLayout({
 
         {
           session &&
-          <Link href={`/dashboard/`} className="fixed bottom-5 right-5 leading-5">
+          <Link href={`/dashboard/`} className="fixed bottom-[50px] right-5 leading-5">
             <Button size="icon-lg" className="cursor-pointer">
               <MdOutlineSpaceDashboard />
             </Button>
