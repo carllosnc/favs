@@ -4,6 +4,7 @@ import { useBoxesByNamespace } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import { LuBox } from "react-icons/lu"
 import Loading from "../loading"
+import { NoBox } from "../no-box"
 
 type Props = {
   namespace: string
@@ -13,19 +14,10 @@ export function ProfileBoxes({ namespace }: Props) {
   const { data: boxes, isLoading } = useBoxesByNamespace(namespace)
 
   if (isLoading) return <Loading />
-
-  if (boxes?.length === 0) {
-    return (
-      <div className="flex-1  w-full flex flex-col items-center gap-2.5">
-        <div className="w-full text-sm text-center p-5"> No boxes yet </div>
-      </div>
-    )
-  }
+  if (boxes?.length === 0) return <div className="flex-1"> <NoBox /> </div>
 
   return (
     <div className="flex-1 w-full flex flex-col items-center gap-2.5">
-      { boxes?.length === 0 && <div className="w-full text-sm text-center p-5"> No boxes yet </div> }
-
       {
         boxes?.map((box: Box) => (
           <a

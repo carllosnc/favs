@@ -2,6 +2,11 @@ import { Footer } from "@/components/footer"
 import { ProfileHeader } from "@/components/profile/profile-header"
 import { ProfileBoxes } from "@/components/profile/profile-boxes"
 import Link from "next/link"
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile - FAVS",
+};
 
 export default async function PublicBox({ params }: any) {
   const { namespace } = await params
@@ -19,7 +24,6 @@ export default async function PublicBox({ params }: any) {
       </Link>
 
       <ProfileHeader namespace={namespace} />
-
       <ProfileBoxes namespace={namespace} />
 
       <Footer />

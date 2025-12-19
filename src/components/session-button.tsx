@@ -1,7 +1,5 @@
 "use client"
 
-import * as React from "react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,6 +12,7 @@ import {
 import { signOut } from "@/lib/auth-utils"
 import Link from "next/link"
 import { getNamespace } from "@/lib/utils"
+import { useRouter } from "next/navigation"
 
 type HomeButtonProps = {
   name: string
@@ -22,11 +21,12 @@ type HomeButtonProps = {
 }
 
 export function SessionButton({ name, email, avatar }: HomeButtonProps) {
+  const router = useRouter()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          {/* {avatar && <img src={avatar} alt="avatar" className="w-4 h-4 rounded-full" />} */}
           <span>{ getNamespace(email) }</span>
         </Button>
       </DropdownMenuTrigger>
@@ -39,7 +39,10 @@ export function SessionButton({ name, email, avatar }: HomeButtonProps) {
         <DropdownMenuCheckboxItem className="px-2.5">
           <Link href="/" prefetch> Home </Link>
         </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem onClick={ signOut } className="px-2.5 text-red-500">
+        <DropdownMenuCheckboxItem onClick={ async () => {
+          await signOut()
+          router.refresh()
+        } } className="px-2.5 text-red-500">
           Logout
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>

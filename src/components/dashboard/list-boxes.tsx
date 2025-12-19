@@ -8,6 +8,7 @@ import { IoFilter } from "react-icons/io5"
 import { BoxCard } from "./box-card"
 import { SessionContext } from "@/context/session-context"
 import Loading from "../loading"
+import { NoBox } from "../no-box"
 
 export function ListBoxes() {
   const session = useContext(SessionContext)
@@ -22,7 +23,7 @@ export function ListBoxes() {
 
   return (
     <div className="flex flex-col gap-5">
-      { boxes?.length === 0 && <div className="w-full text-sm text-center p-5"> No boxes yet </div> }
+      { boxes?.length === 0 && <NoBox /> }
 
       {
         boxes && boxes?.length > 0 &&

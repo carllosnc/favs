@@ -14,7 +14,7 @@ import { EditBox } from "./edit-box"
 import { SetBoxPublic } from "./set-box-public"
 import { Deletebox } from "./delete-box"
 import { SessionContext } from "@/context/session-context"
-import { useContext } from "react"
+import { use, useContext, useEffect } from "react"
 import Loading from "../loading"
 
 type Props = {
@@ -27,6 +27,10 @@ export function BoxContent({boxId }: Props) {
   const { data, isLoading } = useBox(boxId, session?.user.id!)
   const box = data?.box as Box
   const links = data?.links as LinkType[]
+
+  useEffect(() => {
+    document.title = `${box?.title} - FAVS`
+  }, [box])
 
   if (isLoading) return <Loading />
 
@@ -83,7 +87,6 @@ export function BoxContent({boxId }: Props) {
         </div>
       </div>
 
-      {/* list all links here! */}
       <LinkList links={links} />
     </div>
   )

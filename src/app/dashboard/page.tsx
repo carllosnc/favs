@@ -3,6 +3,11 @@ import { Header } from "@/components/header"
 import { CreateBox } from "@/components/dashboard/create-box"
 import { ListBoxes } from "@/components/dashboard/list-boxes"
 import { GoToProfileButton } from "@/components/dashboard/go-to-profile-button"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Dashboard - FAVS",
+};
 
 export default async function Dashboard(){
   return (

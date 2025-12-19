@@ -1,9 +1,9 @@
-"use client"
+import { Metadata } from "next";
+import { SignInButton } from "@/components/sign-in-button";
 
-import { googleSignIn } from "@/lib/auth-utils";
-import { Button } from "@/components/ui/button";
-import { FcGoogle } from "react-icons/fc";
-import Link from "next/link";
+export const metadata: Metadata = {
+  title: "Sign in - FAVS",
+};
 
 export default function SignInPage(){
   return (
@@ -20,12 +20,9 @@ export default function SignInPage(){
           <span className="text-neutral-500 text-[16px]">
             Welcome, do login to continue
           </span>
-          <Button variant="outline" onClick={() => { googleSignIn() }}>
-            <FcGoogle />
-            Sign with Google
-          </Button>
+          <SignInButton />
         </div>
-        <Link href="/" className="text-center text-blue-600 text-sm"> ← Back to home </Link>
+        <a href="/" className="text-center text-blue-600 text-sm"> ← Back to home </a>
       </div>
     </div>
   )
