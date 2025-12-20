@@ -46,7 +46,6 @@ export function BoxLinks({ isTiny, links }: { isTiny: boolean, links: Link[] }) 
         links?.map((link: Link) => (
           <a
             className="bg-white w-full max-w-[600px] p-[15px] flex flex-col gap-5 shadow-sm rounded-md border border-white hover:border-blue-500 transition-all"
-            target="_blank"
             rel="noreferrer"
             key={link.id}
             href={link.url}>

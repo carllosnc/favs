@@ -47,7 +47,7 @@ export function BoxCard({ box }: Props) {
 
           <div className="flex justify-between items-center px-[15px] py-2.5">
             <div className="flex gap-2.5 items-center">
-              <a href={`/box/${box.author_namespace!}/${box.slug}`} target="_blank" rel="noreferrer">
+              <a href={`/box/${box.author_namespace!}/${box.slug}`} rel="noreferrer">
                 <Button variant="outline" size="icon"> <FiGlobe /> </Button>
               </a>
 

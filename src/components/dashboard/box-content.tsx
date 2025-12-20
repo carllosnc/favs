@@ -73,7 +73,7 @@ export function BoxContent({boxId }: Props) {
         <div className="flex items-center gap-2.5">
           <SetBoxPublic box={box} />
 
-          <a href={`/box/${box.author_namespace!}/${box.slug}`} target="_blank" rel="noreferrer">
+          <a href={`/box/${box.author_namespace!}/${box.slug}`} rel="noreferrer">
             <Button variant="outline" size="icon"> <FiGlobe /> </Button>
           </a>
 
