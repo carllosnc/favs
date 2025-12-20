@@ -23,7 +23,7 @@ export function ProfileBoxes({ namespace }: Props) {
           <a
             href={`/box/${namespace}/${box.slug}`}
             key={box.id}
-            className="bg-white shadow-sm max-w-[500px] border border-white hover:border-blue-500 transition-all flex items-center gap-[15px] rounded-md w-full text-sm px-[15px] py-[15px] justify-between">
+            className="bg-white hover:bg-neutral-50 shadow-sm max-w-[500px] border-2 border-white transition-all flex items-center gap-[15px] rounded-md w-full text-sm px-[15px] py-[15px] justify-between">
             <div className="flex items-center gap-[15px]">
               <LuBox size={22} className="text-neutral-400" />
               <div className="flex flex-col gap-[3px]">
