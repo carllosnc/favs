@@ -29,7 +29,11 @@ export function BoxContent({boxId }: Props) {
   const links = data?.links as LinkType[]
 
   useEffect(() => {
-    document.title = `${box?.title} - FAVS`
+    if (isLoading) {
+      document.title = `Loading...`
+    }else {
+      document.title = `${box?.title} - FAVS`
+    }
   }, [box])
 
   if (isLoading) return <Loading />

@@ -1,9 +1,13 @@
+'use client'
+
 import { BoxPageContent } from "@/components/box/box-page-content"
 import Link from "next/link"
 import { Footer } from "@/components/footer"
+import { useParams } from 'next/navigation'
 
-export default async function BoxPage( { params }: any ) {
-  const { namespace, slug } = await params
+export default function BoxPage( ) {
+  const params = useParams<{ namespace: string; slug: string }>()
+  const { namespace, slug } = params
 
   return (
     <div className="flex flex-col w-full min-h-screen justify-between items-center gap-5">

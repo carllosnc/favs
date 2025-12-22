@@ -1,15 +1,20 @@
+"use client"
+
 import { Footer } from "@/components/footer"
 import { ProfileHeader } from "@/components/profile/profile-header"
 import { ProfileBoxes } from "@/components/profile/profile-boxes"
 import Link from "next/link"
 import { Metadata } from "next";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
 
-export const metadata: Metadata = {
-  title: "Profile - FAVS",
-};
+export default function PublicBox() {
+  const params = useParams<{ namespace: string }>()
+  const { namespace } = params
 
-export default async function PublicBox({ params }: any) {
-  const { namespace } = await params
+  useEffect(() => {
+    document.title = `${namespace} - FAVS`
+  }, [namespace])
 
   return (
     <div className="flex flex-col justify-between min-h-screen pt-10 gap-[30px] items-center w-full">

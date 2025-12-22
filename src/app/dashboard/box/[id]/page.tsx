@@ -1,9 +1,13 @@
+"use client"
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { BoxContent } from "@/components/dashboard/box-content"
+import { useParams } from 'next/navigation'
 
-export default async function DashboardBoxPage({ params }: any ){
-  const { id } = await params
+export default function DashboardBoxPage(){
+  const params = useParams<{ id: string }>()
+  const { id } = params
 
   return (
     <div className="flex flex-col justify-between items-center w-full min-h-screen">

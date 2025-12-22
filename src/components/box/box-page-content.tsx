@@ -5,7 +5,7 @@ import { Box, Link } from "@/types/db-types"
 import { BoxLinks } from "./box-links"
 import { BoxSheet } from "./box-sheet"
 import { Switch } from "../ui/switch"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Loading from "../loading"
 
 type Props = {
@@ -18,6 +18,14 @@ export function BoxPageContent({ namespace, slug }: Props) {
   const [ isTiny, setIsTiny ] = useState<boolean>(false)
   const box: Box = data?.box as Box
   const links = data?.links as Link[]
+
+  useEffect(() => {
+    if(isLoading) {
+      document.title = `Loading...`
+    }else {
+      document.title = `${box?.title} by ${box?.author_namespace} - FAVS`
+    }
+  }, [box?.title])
 
   if (isLoading) {
     return ( <Loading /> )
