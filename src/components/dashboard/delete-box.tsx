@@ -51,7 +51,7 @@ export function Deletebox({ box, children }: Props) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={deleteBox} disabled={isPending}>
+          <AlertDialogAction className="bg-red-700" onClick={deleteBox} disabled={isPending}>
             {isPending ? <Spinner className="text-white" /> : 'Delete'}
           </AlertDialogAction>
         </AlertDialogFooter>

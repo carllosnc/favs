@@ -26,7 +26,7 @@ export function SessionButton({ name, email, avatar }: HomeButtonProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
+        <Button className="text-sm" variant="outline">
           <span>{ getNamespace(email) }</span>
         </Button>
       </DropdownMenuTrigger>

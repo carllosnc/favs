@@ -67,7 +67,7 @@ export function CreateLink({ box, children }: Props) {
 
       <DialogContent className="border dialog-content gap-[30px] border-white dark:border-neutral-800 w-full max-w-[400px]">
         <DialogHeader className="text-left">
-          <DialogTitle className="font-medium"> Create new link </DialogTitle>
+          <DialogTitle className="font-bold text-md"> Create new link </DialogTitle>
         </DialogHeader>
         <form
           className="flex flex-col gap-5"

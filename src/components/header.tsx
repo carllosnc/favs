@@ -27,7 +27,7 @@ export function Header() {
             session &&
             <div className="flex gap-2.5">
             <Link href="/dashboard" prefetch>
-              <Button className="text-blue-500 cursor-pointer" variant="outline">
+              <Button className="text-blue-500 text-sm cursor-pointer" variant="outline">
                 Your favs
               </Button>
             </Link>
@@ -40,7 +40,7 @@ export function Header() {
             </div>
           }
 
-          { !session && <Link href="/sign-in" prefetch><Button> Sign in </Button></Link> }
+          { !session && <Link href="/sign-in" prefetch><Button className="text-xs"> Sign in </Button></Link> }
         </div>
       </div>
     </header>
