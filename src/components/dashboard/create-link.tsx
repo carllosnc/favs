@@ -11,16 +11,17 @@ import { Input } from '@/components/ui/input'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LinkIcon } from 'lucide-react'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { newLinkSchema } from '@/data/zod-schemas/new-link-schema'
 import { useCreateLink } from '@/data/db-hooks/link-hooks'
 
 type Props = {
   box: Box
+  children: ReactNode
 }
 
-export function CreateLink({ box }: Props) {
+export function CreateLink({ box, children }: Props) {
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const { mutate } = useCreateLink(box.id)
@@ -62,10 +63,7 @@ export function CreateLink({ box }: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm">
-          <LinkIcon className="w-4 h-4 mr-2" />
-          New link
-        </Button>
+        { children }
       </DialogTrigger>
 
       <DialogContent className="border dialog-content gap-[30px] border-white dark:border-neutral-800 w-full max-w-[400px]">

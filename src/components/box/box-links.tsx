@@ -37,7 +37,7 @@ export function BoxLinks({ isTiny, links }: { isTiny: boolean, links: Link[] }) 
   }
 
   if (links?.length === 0) {
-    return <EmptyBox />
+    return <div> <EmptyBox /> </div>
   }
 
   return (

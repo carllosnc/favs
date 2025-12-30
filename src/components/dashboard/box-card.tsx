@@ -1,21 +1,18 @@
 import { LuBox, LuLock } from "react-icons/lu"
 import { Box } from "@/types/db-types"
 import { formatDate } from "@/lib/utils"
-import { useContext } from "react"
 import { EditBox } from "./edit-box"
 import { Button } from "../ui/button"
-import { FiEdit, FiGlobe, FiTrash } from "react-icons/fi"
+import { FiEdit, FiGlobe, FiTrash, FiLink } from "react-icons/fi"
 import { Deletebox } from "./delete-box"
 import Link from "next/link"
-import { SessionContext } from "@/context/session-context"
+import { CreateLink } from "./create-link"
 
 type Props = {
   box: Box
 }
 
 export function BoxCard({ box }: Props) {
-  const session = useContext(SessionContext)
-
   return (
     <div
       className="transition-all shadow-sm rounded-md flex items-center justify-between bg-white border-2 border-white"
@@ -33,7 +30,7 @@ export function BoxCard({ box }: Props) {
                   : <LuLock size={22} className="text-red-400" />
               }
               <div className="flex flex-col gap-[5px]">
-                <h3 className="text-neutral-800 font-bold text-[16px]">{box.title}</h3>
+                <h3 className="text-neutral-800 font-bold text-sm">{box.title}</h3>
                 {
                   box.description &&
                   <p className="text-sm text-neutral-500"> {box.description} </p>
@@ -50,6 +47,10 @@ export function BoxCard({ box }: Props) {
               <a href={`/box/${box.author_namespace!}/${box.slug}`} rel="noreferrer">
                 <Button variant="outline" size="icon"> <FiGlobe /> </Button>
               </a>
+
+              <CreateLink box={box} >
+                <Button variant="outline" size="icon"> <FiLink /> </Button>
+              </CreateLink>
 
               <EditBox box={box}>
                 <Button variant="outline" size="icon"> <FiEdit /> </Button>

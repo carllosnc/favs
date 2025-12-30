@@ -16,6 +16,7 @@ import { Deletebox } from "./delete-box"
 import { SessionContext } from "@/context/session-context"
 import { use, useContext, useEffect } from "react"
 import Loading from "../loading"
+import { LinkIcon } from "lucide-react"
 
 type Props = {
   boxId: string
@@ -69,7 +70,12 @@ export function BoxContent({boxId }: Props) {
       <div className="w-full p-2.5 flex md:flex-col md:justify-start md:items-start items-center justify-between gap-[15px] rounded-md bg-white shadow-sm">
         <div className="flex items-center gap-2.5">
           <AllBoxesSheet />
-          <CreateLink box={box} />
+          <CreateLink box={box} >
+            <Button size="sm">
+              <LinkIcon className="w-4 h-4 mr-2" />
+              New link
+            </Button>
+          </CreateLink>
         </div>
 
         <hr className="border-neutral-200 w-full" />

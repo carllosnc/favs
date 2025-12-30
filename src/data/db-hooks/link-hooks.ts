@@ -9,6 +9,7 @@ export function useCreateLink(boxId: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["links", boxId] })
       queryClient.invalidateQueries({ queryKey: ["box", boxId] })
+      queryClient.invalidateQueries({ queryKey: ["boxes"] })
     },
   })
 }
