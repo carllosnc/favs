@@ -1,4 +1,4 @@
-import type { NewLink, Box, Metadata } from '@/types/db-types'
+import type { NewLink, Box, SiteMetadata, YouTubeMetadata } from '@/types/db-types'
 import {
   Dialog,
   DialogContent,
@@ -14,6 +14,7 @@ import { ReactNode, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { newLinkSchema } from '@/data/zod-schemas/new-link-schema'
 import { useCreateLink } from '@/data/db-hooks/link-hooks'
+import { METADATA_API_URL } from '@/lib/constants'
 
 type Props = {
   box: Box
@@ -38,16 +39,24 @@ export function CreateLink({ box, children }: Props) {
     setLoading(true)
 
     const metadataRequest = await fetch(
-      `https://metadata-api.carllos-nc.workers.dev/metadata?url=${data.url}`
+      `${METADATA_API_URL}?url=${data.url}`
     )
 
-    const metadataData: Metadata = await metadataRequest.json()
+    const metadataData: SiteMetadata | YouTubeMetadata = await metadataRequest.json()
+
+    const description =
+      (metadataData as SiteMetadata).description ||
+      (metadataData as YouTubeMetadata).author_name
+
+    const image =
+      (metadataData as SiteMetadata).image ||
+      (metadataData as YouTubeMetadata).thumbnail_url
 
     const link: NewLink = {
       url: data.url,
       title: metadataData.title,
-      description: metadataData.description,
-      image: metadataData.image,
+      description: description,
+      image: image,
       box_id: box.id,
       user_id: box.user_id!,
     }
