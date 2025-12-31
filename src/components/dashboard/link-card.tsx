@@ -44,7 +44,7 @@ export function LinkCard({ link }: props) {
                 className="w-5 h-5 min-w-5 min-h-5"
               />
             </div>
-            <span className="text-neutral-900 text-sm break-all max-w-[600px]">
+            <span className="text-neutral-900 text-sm truncate max-w-[600px]">
               {link.title!}
             </span>
           </div>
