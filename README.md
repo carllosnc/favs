@@ -1,33 +1,22 @@
 # Favs
 
-### What's inside?
-- NextJS
-- TursoDB
-- Better Auth
-- Shadcn
-- Tailwind
+A modern full-stack web application built for personal favorites management.
 
-### Setup
+## 📚 Documentation
 
-Initial setup.
-```sh
-# turso db
-TURSO_DATABASE_URL=""
-TURSO_AUTH_TOKEN=""
+Detailed documentation has been moved to the [documentation/](documentation/) folder:
 
-# turso db
-NEXT_PUBLIC_TURSO_DATABASE_URL=""
-NEXT_PUBLIC_TURSO_AUTH_TOKEN=""
+- **[Setup Guide](documentation/SETUP.md)**: Instructions on how to install, configure, and run the project.
+- **[Tech Stack](documentation/TECH_STACK.md)**: Information about the technologies used in this project.
+- **[Contributing](documentation/CONTRIBUTING.md)**: Guidelines for contributing to the project.
 
-# better auth
-BETTER_AUTH_SECRET=""
-BETTER_AUTH_URL=""
+## 🚀 Quick Start
 
-# google
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
-```
+1.  Clone the repo.
+2.  Install dependencies: `bun install`.
+3.  Set up your `.env` file (see [Setup Guide](documentation/SETUP.md)).
+4.  Run `bun run dev`.
 
 ---
 
-Carlos Costa @ 2025
+Created by Carlos Costa @ 2025
