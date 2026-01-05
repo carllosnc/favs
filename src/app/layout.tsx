@@ -64,7 +64,7 @@ export default async function RootLayout({
       <body
         className={`${interSans.className} ${geistMono.className} antialiased bg-neutral-100`}
       >
-        <div className="w-full m-auto max-w-[800px] min-h-screen flex flex-col justify-between items-center lg:border-transparent px-2.5">
+        <div className="border-x border-neutral-200 w-full m-auto max-w-[800px] min-h-screen flex flex-col justify-between items-center lg:border-transparent px-2.5">
           <ReactQueryProvider>
             <SessionProvider session={session}>
               {children}
