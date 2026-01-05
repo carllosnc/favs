@@ -12,8 +12,9 @@ import { Input } from "../ui/input"
 import { Label } from "@radix-ui/react-label"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext, useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { newBoxSchema } from "@/data/zod-schemas/new-box-schema"
+import { z } from 'zod'
 import { useCreateBox } from "@/data/db-hooks/box-hooks"
 import type { NewBox } from "@/types/db-types"
 import { extractErrorDetails } from "@/lib/error"
@@ -31,18 +32,20 @@ export function CreateBox(){
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<z.infer<typeof newBoxSchema>>({
     resolver: zodResolver(newBoxSchema),
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<z.infer<typeof newBoxSchema>> = (data) => {
+    if (!session?.user?.id) return
+
     const box: NewBox = {
       title: data.title.trim(),
       slug: getSlug(data.title.trim()),
       description: data.description,
-      author_namespace: getNamespace(session!.user.email),
-      user_id: session!.user.id,
-      author_name: session!.user.name,
+      author_namespace: getNamespace(session.user.email),
+      user_id: session.user.id,
+      author_name: session.user.name,
     }
 
     mutate(box)
@@ -99,11 +102,11 @@ export function CreateBox(){
             />
           </div>
 
-          {(error?.cause as any) && (
+          {error && (
             <div className="text-[13px] text-red-600">
               <span>
                 {extractErrorDetails(
-                  (error?.cause as any).message
+                  (error as Error).message
                 )?.errorName.toLowerCase()}
               </span>
             </div>

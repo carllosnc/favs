@@ -8,11 +8,13 @@ import {
 } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { useForm } from 'react-hook-form'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ReactNode, useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { newLinkSchema } from '@/data/zod-schemas/new-link-schema'
+import { z } from 'zod'
 import { useCreateLink } from '@/data/db-hooks/link-hooks'
 import { METADATA_API_URL } from '@/lib/constants'
 
@@ -31,11 +33,11 @@ export function CreateLink({ box, children }: Props) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<z.infer<typeof newLinkSchema>>({
     resolver: zodResolver(newLinkSchema),
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit: SubmitHandler<z.infer<typeof newLinkSchema>> = async (data) => {
     setLoading(true)
 
     const metadataRequest = await fetch(

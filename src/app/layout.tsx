@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/components/react-query-provider";
 import { Toaster } from "@/components/ui/sonner";
@@ -10,11 +10,6 @@ import { Button } from "@/components/ui/button"
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import Link from "next/link";
 import { SessionProvider } from "@/context/session-context";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -46,7 +41,7 @@ export default async function RootLayout({
       <body
         className={`${interSans.className} ${geistMono.className} antialiased bg-neutral-100`}
       >
-        <div className="w-full m-auto max-w-[800px] border-x border-neutral-300 min-h-screen flex flex-col justify-between items-center lg:border-transparent px-2.5">
+        <div className="w-full m-auto max-w-[800px] min-h-screen flex flex-col justify-between items-center lg:border-transparent px-2.5">
           <ReactQueryProvider>
             <SessionProvider session={session}>
               {children}

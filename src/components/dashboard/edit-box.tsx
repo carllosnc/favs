@@ -12,8 +12,9 @@ import { Input } from "../ui/input"
 import { Label } from "@radix-ui/react-label"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ReactNode, useContext, useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { newBoxSchema } from "@/data/zod-schemas/new-box-schema"
+import { z } from 'zod'
 import { useUpdateBox } from "@/data/db-hooks/box-hooks"
 import { Box } from "@/types/db-types"
 import { extractErrorDetails } from "@/lib/error"
@@ -30,7 +31,7 @@ export function EditBox({ box, children }: Props){
   const [open, setOpen] = useState(false)
 
   const { mutate, isPending, isError, error, isSuccess } = useUpdateBox(
-    { userId: session!.user.id!, boxId: box.id }
+    { userId: session?.user?.id!, boxId: box.id }
   )
 
   const {
@@ -38,7 +39,7 @@ export function EditBox({ box, children }: Props){
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<z.infer<typeof newBoxSchema>>({
     values: {
       title: box.title,
       description: box.description || "",
@@ -46,13 +47,13 @@ export function EditBox({ box, children }: Props){
     resolver: zodResolver(newBoxSchema),
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<z.infer<typeof newBoxSchema>> = (data) => {
     console.log('Calling here!')
 
     const updatedBox = structuredClone(box)
     updatedBox.title = data.title.trim()
     updatedBox.slug = getSlug(data.title.trim())
-    updatedBox.description = data.description
+    updatedBox.description = data.description ?? null
 
     mutate(updatedBox)
   }
@@ -105,11 +106,11 @@ export function EditBox({ box, children }: Props){
             />
           </div>
 
-          {(error?.cause as any) && (
+          {error && (
             <div className="text-[13px] text-red-600">
               <span>
                 {extractErrorDetails(
-                  (error?.cause as any).message
+                  (error as Error).message
                 )?.errorName.toLowerCase()}
               </span>
             </div>
