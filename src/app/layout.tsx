@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "FAVS - Your favourite links",
     description: "The better place to your favorite links",
     images: ["https://favs.vercel.app/og.png"],
-    creator: "@carlosnosta",
+    creator: "@carllosnc",
   },
 };
 
