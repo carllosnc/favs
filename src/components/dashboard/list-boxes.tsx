@@ -13,7 +13,7 @@ import { NoBox } from "../no-box"
 export function ListBoxes() {
   const session = useContext(SessionContext)
   const { data: boxes, isLoading } = useBoxes(session?.user.id!)
-  const [filter, setFilter] = useState<string>()
+  const [filter, setFilter] = useState<string>("")
 
   function filterBox(box: Box) {
     return !filter || box.title.toLowerCase().includes(filter.toLowerCase())
