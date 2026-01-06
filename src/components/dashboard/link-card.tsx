@@ -24,12 +24,12 @@ export function LinkCard({ link }: props) {
     toast(`${link.title} removed`, {
       description: link.url,
     })
-  }
+  } 
 
   return (
-    <article className="bg-white border-2 border-white hover:bg-neutral-50 transition-all shadow-sm rounded-md p-[15px] gap-5 items-start overflow-hidden flex md:items-center md:flex-row">
-      <a className="w-full" href={link.url!} target="_blank" rel="noreferrer">
-        <div className="flex flex-col gap-[5px]">
+    <article className="bg-white border-2 border-white hover:bg-neutral-50 transition-all shadow-sm rounded-md p-[15px] gap-5 items-start flex md:items-center md:flex-row">
+      <a className="w-full truncate" href={link.url!} target="_blank" rel="noreferrer">
+        <div className="flex flex-col gap-[5px] truncate">
           <small className="text-neutral-600">{formatDate(link.created_at!)}</small>
 
           <span className="text-blue-600 text-[14px] truncate max-w-[600px]">
