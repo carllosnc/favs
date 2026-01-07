@@ -40,7 +40,7 @@ export function Header() {
             </div>
           }
 
-          { !session && <Link href="/sign-in" prefetch><Button className="text-xs"> Sign in </Button></Link> }
+          { !session && <Link href="/sign-in" prefetch><Button> Sign in </Button></Link> }
         </div>
       </div>
     </header>
