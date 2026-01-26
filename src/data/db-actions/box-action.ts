@@ -1,3 +1,5 @@
+"use server"
+
 import { db } from '@/database'
 import { boxes } from '@/data/db-schemas/box-schema'
 import type { Box, NewBox, UpdateBox } from '@/types/db-types'
