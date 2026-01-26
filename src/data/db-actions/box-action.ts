@@ -5,16 +5,37 @@ import { boxes } from '@/data/db-schemas/box-schema'
 import type { Box, NewBox, UpdateBox } from '@/types/db-types'
 import { eq, asc, desc, and, sql } from 'drizzle-orm'
 import { links } from '../db-schemas/link-schema'
+import { headers } from "next/headers"
+import { auth } from "@/lib/auth"
+import { getNamespace } from "@/lib/utils"
 
-export async function createBox(box: NewBox) {
-  return await db.insert(boxes).values(box).returning()
+async function getSession() {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+  if (!session) throw new Error("Unauthorized")
+  return session
 }
 
-export async function getBoxes(userId: string) {
+export async function createBox(box: NewBox) {
+  const session = await getSession()
+
+  const newBox: NewBox = {
+      ...box,
+      user_id: session.user.id,
+      author_name: session.user.name,
+      author_namespace: getNamespace(session.user.email)
+  }
+
+  return await db.insert(boxes).values(newBox).returning()
+}
+
+export async function getBoxes() {
+  const session = await getSession()
   return await db
     .select()
     .from(boxes)
-    .where(eq(boxes.user_id, userId))
+    .where(eq(boxes.user_id, session.user.id))
     .orderBy(desc(boxes.created_at))
 }
 
@@ -41,11 +62,12 @@ export async function getBoxBySlug(namespace: string, slug: string) {
   return { box: box, links: allLinks }
 }
 
-export async function getBoxById(id: string, userId: string) {
+export async function getBoxById(id: string) {
+  const session = await getSession()
   const box = await db
     .select()
     .from(boxes)
-    .where(and(eq(boxes.id, id), eq(boxes.user_id, userId))).get()
+    .where(and(eq(boxes.id, id), eq(boxes.user_id, session.user.id))).get()
 
     let allLinks = null
 
@@ -56,17 +78,19 @@ export async function getBoxById(id: string, userId: string) {
     return { box: box, links: allLinks }
 }
 
-export async function updateBox(userId: string, box: UpdateBox) {
+export async function updateBox(box: UpdateBox) {
+  const session = await getSession()
   return await db
     .update(boxes)
     .set(box)
-    .where(and(eq(boxes.user_id, userId), eq(boxes.id, box.id)))
+    .where(and(eq(boxes.user_id, session.user.id), eq(boxes.id, box.id)))
     .returning()
 }
 
-export async function deleteBox(userId: string, box: Box) {
+export async function deleteBox(box: Box) {
+  const session = await getSession()
   return await db
     .delete(boxes)
-    .where(and(eq(boxes.user_id, userId), eq(boxes.id, box.id)))
+    .where(and(eq(boxes.user_id, session.user.id), eq(boxes.id, box.id)))
     .returning()
 }

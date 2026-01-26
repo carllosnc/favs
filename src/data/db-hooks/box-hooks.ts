@@ -13,7 +13,7 @@ import { Box, NewBox, UpdateBox } from "@/types/db-types";
 export function useBoxes(userId: string) {
   return useQuery({
     queryKey: ["boxes"],
-    queryFn: () => getBoxes(userId),
+    queryFn: () => getBoxes(),
   })
 }
 
@@ -34,7 +34,7 @@ export function useBoxBySlug(namespace: string, slug: string) {
 export function useBox(boxId: string, userId: string) {
   return useQuery({
     queryKey: ["box", boxId],
-    queryFn: () => getBoxById(boxId, userId),
+    queryFn: () => getBoxById(boxId),
     enabled: !!boxId, // Only fetch if ID is provided
   })
 }
@@ -52,7 +52,7 @@ export function useCreateBox() {
 export function useUpdateBox({ userId, boxId }: { userId: string, boxId: string }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: UpdateBox) => updateBox(userId, data),
+    mutationFn: (data: UpdateBox) => updateBox(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["boxes"] })
       queryClient.invalidateQueries({ queryKey: ["box", boxId] })
@@ -63,7 +63,7 @@ export function useUpdateBox({ userId, boxId }: { userId: string, boxId: string 
 export function useDeleteBox({ userId }: { userId: string }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (box: Box) => deleteBox(userId, box),
+    mutationFn: (box: Box) => deleteBox(box),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["boxes"] })
     },
