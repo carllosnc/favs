@@ -1,3 +1,5 @@
+"use server"
+
 import { db } from '@/database'
 import type { NewLink, Link, Box } from '@/types/db-types'
 import { links } from '@/data/db-schemas/link-schema'
